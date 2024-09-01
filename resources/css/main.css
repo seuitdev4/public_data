@@ -1,0 +1,125 @@
+body {
+    color: #fff;
+
+
+}
+.color {
+    background-color: #4A9CAF;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: left;
+    justify-content: left;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+}
+
+.form-control {
+    width: 500px;
+}
+
+.output-container {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+    font-family: "Times New Roman", Times, serif;
+    max-height: 300px;
+    overflow-y: auto;
+    border:2px solid transparent;
+
+}
+.output-container * {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+.input {
+    display: block;
+    width: 130px;
+}
+
+label,
+select,
+button {
+    color: #fff;
+    background-color: #495595;
+    border: 1px solid #666;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+button {
+    cursor: pointer;
+    text-align: center !important;
+    align-content: left !important;
+}
+
+table,
+th,
+td {
+    border: 4px solid #495595;
+    border-collapse: collapse;
+    width: 90%;
+}
+
+th {
+    width: 10px;
+    color: #495595;
+    background-color: #ffffff8a;
+}
+
+td,
+th {
+    padding-left: 9px;
+    padding-right: 9px;
+    font-size: 16px;
+}
+
+.example {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #333;
+}
+
+.example h3 {
+    color: #fff;
+}
+
+.example pre {
+    white-space: pre-wrap;
+}
+
+.catalog-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.catalog-table th,
+.catalog-table td {
+    border: 1px solid #495595;
+    padding: 8px;
+    text-align: left;
+}
+
+.catalog-table th {
+    background-color: #333;
+    color: #E1B252;
+    font-weight: bold;
+}
+
+.catalog-table td {
+    background-color: #444;
+    color: #fff;
+}
