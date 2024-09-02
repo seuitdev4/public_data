@@ -31,7 +31,7 @@ class ListStudentReportRequest extends FormRequest
             'gender' => 'array|nullable|sometimes',
             'gender.*' => 'in:male,female',
             'study_term_id' => 'array|nullable|sometimes',
-            'study_term_id.*' => 'exists:semesters,id',
+            'study_term_id.*' => 'exists:study_terms,id',
         ];
     }
 }
