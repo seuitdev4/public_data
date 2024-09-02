@@ -14,6 +14,19 @@ class StudentReportDepartmentResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'gender' => $this->gender,
+            'student_level' => $this->student_level,
+            'count' => $this->count,
+            'faculty_department_id' => $this->faculty_department_id,
+            'faculty_id' => $this->faculty_id,
+            'study_year_id' => $this->study_year_id,
+            'study_term_id' => $this->study_term_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
+
+   
 }
