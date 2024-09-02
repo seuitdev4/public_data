@@ -21,9 +21,9 @@ class StatisticsRepository extends BaseRepository implements StatisticsRepositor
             foreach ($filters as $key => $value) {
                 $this->model->with('faculty');
                 if (is_array($value)) {
-                    $this->model = $this->model->where($key, 'in', $value);
+                    $this->model->where($key, 'in', $value);
                 } else {
-                    $this->model = $this->model->where($key, $value);
+                    $this->model->where($key, $value);
                 }
             }
         }
