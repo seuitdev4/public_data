@@ -1,75 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SEUAPI - Graduated Students Explorer</title>
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
     />
     <link
-        href="https://fonts.googleapis.com/css?family=Almarai"
-        rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Almarai"
+      rel="stylesheet"
     />
     <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"
-        rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"
+      rel="stylesheet"
     />
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
-</head>
-<body>
-<header>
-    <div class="container">
-        <div class="row align-items-center justify-content-between">
-            <div class="col-md-3 text-md-start text-center mb-2 mb-md-0">
-                <img
-                    src="https://seu.edu.sa/media/1124/2030.png"
-                    alt="2030 Logo"
-                    class="img-fluid"
-                    style="max-height: 50px"
-                />
-            </div>
-            <div class="col-md-6 text-center">
-                <a href="https://www.seu.edu.sa" target="_blank">
-                    <img
-                        src="https://seu.edu.sa/media/6634/logo-2.png"
-                        alt="SEU Logo"
-                        class="img-fluid"
-                        style="max-height: 80px"
-                    />
-                </a>
-            </div>
-            <div class="col-md-3 d-flex justify-content-end">
-                <img
-                    src="https://seu.edu.sa/media/5404/pattern.png"
-                    alt="Pattern"
-                    class="img-fluid"
-                    style="max-height: 50px"
-                />
-            </div>
-        </div>
-    </div>
-</header>
+    <style>
+      body {
+        background-color: #f0f2f5;
+        color: #333;
+      }
+      .main-container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+      .form-label {
+        font-weight: bold;
+        color: #4a9caf;
+      }
+      .btn-primary {
+        background-color: #4a9caf;
+        border-color: #4a9caf;
+      }
+      .btn-primary:hover {
+        background-color: #3a7d8d;
+        border-color: #3a7d8d;
+      }
+      .output-container {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 1rem;
+        margin-top: 1rem;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      .catalog-table {
+        margin-top: 2rem;
+      }
+      .catalog-table th {
+        background-color: #4a9caf;
+        color: white;
+      }
+      .example-value {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 1rem;
+        margin-top: 1rem;
+      }
 
-<div class="container">
-    <div class="main-container">
+      header {
+        background: linear-gradient(to left, #5b3283, #3580ab, #5db5b3);
+        color: white;
+        padding: 1rem 0;
+      }
+
+      header .img-fluid {
+        max-height: 50px;
+      }
+
+      @media (max-width: 767px) {
+        header .row > div {
+          margin-bottom: 1rem;
+        }
+
+        header .img-fluid {
+          max-height: 40px;
+        }
+      }
+
+      footer {
+        background: #fff url(https://seu.edu.sa/images/footer-b.png) top center
+          repeat-x;
+        padding-top: 40px;
+      }
+
+      footer p {
+        color: #fff;
+      }
+      footer .footer-section {
+        background: #001d6c;
+        padding: 30px 0 0;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md-3 text-md-start text-center mb-2 mb-md-0">
+            <img
+              src="https://seu.edu.sa/media/1124/2030.png"
+              alt="2030 Logo"
+              class="img-fluid"
+              style="max-height: 50px"
+            />
+          </div>
+          <div class="col-md-6 text-center">
+            <a href="https://www.seu.edu.sa" target="_blank">
+              <img
+                src="https://seu.edu.sa/media/6634/logo-2.png"
+                alt="SEU Logo"
+                class="img-fluid"
+                style="max-height: 80px"
+              />
+            </a>
+          </div>
+          <div class="col-md-3 d-flex justify-content-end">
+            <img
+              src="https://seu.edu.sa/media/5404/pattern.png"
+              alt="Pattern"
+              class="img-fluid"
+              style="max-height: 50px"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="main-container">
         <h1 class="mb-4">Explore the API for Graduated Students</h1>
         <p class="mb-4">
-            This API supports the
-            <span class="text-danger">HTTP GET method</span>. Most API endpoints
-            return JSON. Endpoints are arranged hierarchically to illustrate the
-            relationships between items.
+          This API supports the
+          <span class="text-danger">HTTP GET method</span>. Most API endpoints
+          return JSON. Endpoints are arranged hierarchically to illustrate the
+          relationships between items.
         </p>
 
-        <form id="filterForm">
+        <form id="filterForm" method="POST"> 
+            @csrf
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="facultyInput" class="form-label">{{ __('general.faculties') }}:</label>
-                    <select id="faculty" class="form-select">
+                    <select id="faculty" class="form-select" name="faculties[]" multiple>
                         <option value="">{{ __('general.all') }}</option>
                         @foreach($faculties as $faculty)
                             <option value="{{ $faculty->id }}">{{ $faculty->title }}</option>
@@ -79,7 +164,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="degreeInput" class="form-label">{{ __('general.degree_name') }}:</label>
-                    <select id="level" class="form-select">
+                    <select id="level" class="form-select"  name="levels[]" multiple>
                     <option value="">{{ __('general.all') }}</option>
                     @foreach($levels as $level)
                         <option value="{{ $level->id }}">{{ $level->title }}</option>
@@ -89,7 +174,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="genderInput" class="form-label">Gender:</label>
-                    <select id="gender" class="form-select">
+                    <select id="gender" class="form-select" name="genders[]" multiple>
                         <option value="">{{ __('general.all') }}</option>
                         @foreach($genders as $gender)
                             <option value="{{$gender }}">{{ __('general.'.$gender) }}</option>
@@ -98,7 +183,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="semesterInput" class="form-label">Semester:</label>
-                    <select id="faculty" class="form-select">
+                    <select id="faculty" class="form-select" name="semesters[]" multiple>
                         <option value="">{{ __('general.all') }}</option>
                         @foreach($faculties as $faculty)
                             <option value="{{ $faculty->id }}">{{ $faculty->title }}</option>
@@ -111,7 +196,7 @@
 
             <div class="mt-4">
                 <button
-                    type="button"
+                    type="submit"
                     id="filterButton"
                     class="btn btn-primary me-2">
                     Execute
@@ -130,304 +215,186 @@
         </form>
 
         <div class="output-container mt-4">
-            <h3>Result</h3>
-            <pre id="outputContainer"></pre>
+          <h3>Result</h3>
+          <pre id="outputContainer"></pre>
         </div>
 
-        <div class="example-value mt-4">
-            <h3>Example Value</h3>
-            <pre>
-{
-  "total_count": 4000,
-  "results": [
-    {
-      "Degree": "bachelor",
-      "NumberOfStudents": 2,
-      "Gender": "male",
-      "Semester": "1441",
-      "Faculty": {
-        "Engineering "
-      }
-    },
-    {
-      "Degree": "master",
-      "NumberOfStudents": 7,
-      "Gender": "female",
-      "Semester": "1445",
-      "Faculty": {
-        "Law"
-      }
-    }
-  ]
-}</pre
-            >
-        </div>
 
         <div class="catalog-table mt-4">
-            <h3>API Catalog</h3>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Parameters</th>
-                    <th>Terms</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td rowspan="11">Faculty</td>
-                    <td>Faculty name1</td>
-                </tr>
-                <tr>
-                    <td>Faculty name2</td>
-                </tr>
-                <tr>
-                    <td>Faculty name3</td>
-                </tr>
-                <tr>
-                    <td>Faculty name4</td>
-                </tr>
-                <tr>
-                    <td>Faculty name5</td>
-                </tr>
-                <tr>
-                    <td>Faculty name6</td>
-                </tr>
-                <tr>
-                    <td>Faculty name7</td>
-                </tr>
-                <tr>
-                    <td>Faculty name8</td>
-                </tr>
-                <tr>
-                    <td>Faculty name9</td>
-                </tr>
-                <tr>
-                    <td>Faculty name10</td>
-                </tr>
-                <tr>
-                    <td>Faculty name11</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">Gender</td>
-                    <td>male</td>
-                </tr>
-                <tr>
-                    <td>female</td>
-                </tr>
-                <tr>
-                    <td rowspan="3">Degree</td>
-                    <td>master</td>
-                </tr>
-                <tr>
-                    <td>phd</td>
-                </tr>
-                <tr>
-                    <td>bachelor</td>
-                </tr>
-                <tr>
-                    <td>Semester</td>
-                    <td>1445</td>
-                </tr>
-                </tbody>
-            </table>
+          <h3>API Catalog</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Parameters</th>
+                <th>Terms</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="11">Faculty</td>
+                <td>Faculty name1</td>
+              </tr>
+              <tr>
+                <td>Faculty name2</td>
+              </tr>
+              <tr>
+                <td>Faculty name3</td>
+              </tr>
+              <tr>
+                <td>Faculty name4</td>
+              </tr>
+              <tr>
+                <td>Faculty name5</td>
+              </tr>
+              <tr>
+                <td>Faculty name6</td>
+              </tr>
+              <tr>
+                <td>Faculty name7</td>
+              </tr>
+              <tr>
+                <td>Faculty name8</td>
+              </tr>
+              <tr>
+                <td>Faculty name9</td>
+              </tr>
+              <tr>
+                <td>Faculty name10</td>
+              </tr>
+              <tr>
+                <td>Faculty name11</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Gender</td>
+                <td>male</td>
+              </tr>
+              <tr>
+                <td>female</td>
+              </tr>
+              <tr>
+                <td rowspan="3">Degree</td>
+                <td>master</td>
+              </tr>
+              <tr>
+                <td>phd</td>
+              </tr>
+              <tr>
+                <td>bachelor</td>
+              </tr>
+              <tr>
+                <td>Semester</td>
+                <td>1445</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
-</div>
 
-<footer>
-    <div class="footer-section">
+    <footer>
+      <div class="footer-section">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        Copyright 2024, All rights reserved to Saudi Electronic
-                        University.
-                    </p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="#" class="text-white me-2">Privacy Policy</a>
-                    <a href="#" class="text-white me-2">Terms of Service</a>
-                    <a href="#" class="text-white">Contact Us</a>
-                </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>
+                Copyright 2024, All rights reserved to Saudi Electronic
+                University.
+              </p>
             </div>
+            <div class="col-md-6 text-md-end">
+              <a href="#" class="text-white me-2">Privacy Policy</a>
+              <a href="#" class="text-white me-2">Terms of Service</a>
+              <a href="#" class="text-white">Contact Us</a>
+            </div>
+          </div>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    let filteredData = [];
-
-    function filterData() {
-        const faculty = document.getElementById("facultyInput").value;
-        const degree = document.getElementById("degreeInput").value;
-        const gender = document.getElementById("genderInput").value;
-        const semester = document.getElementById("semesterInput").value;
-        const studentNumber =
-            document.getElementById("studentNumberInput").value;
-        const studentNumberOperator = document.getElementById(
-            "studentNumberOperator"
-        ).value;
-        const groupField = document.getElementById("groupField").value;
-        const sortOrder = document.getElementById("sortOrder").value;
-        const limit = document.getElementById("limitInput").value;
-
-        const data = [
-            {
-                degree_name: "bachelor's",
-                number_of_students: 82,
-                gender: "male",
-                Semester: "semester1441",
-                faculty_name: "Law",
-                N0: 1.0,
-            },
-            {
-                degree_name: "master",
-                number_of_students: 5,
-                gender: "male",
-                Semester: "semester1444",
-                faculty_name: "Engineering",
-                N0: 2.0,
-            },
-        ];
-
-        filteredData = data.filter((item) => {
-            const facultyMatches =
-                faculty === "" ||
-                faculty
-                    .split(" ")
-                    .some((term) =>
-                        item.faculty_name.toLowerCase().includes(term.toLowerCase())
-                    );
-            const degreeMatches =
-                degree === "" ||
-                degree
-                    .split(" ")
-                    .some((term) =>
-                        item.degree_name.toLowerCase().includes(term.toLowerCase())
-                    );
-            const genderMatches =
-                gender === "" ||
-                gender
-                    .split(" ")
-                    .some((term) =>
-                        item.gender.toLowerCase().includes(term.toLowerCase())
-                    );
-            const semesterMatches =
-                semester === "" ||
-                semester
-                    .split(" ")
-                    .some((term) =>
-                        item.Semester.toLowerCase().includes(term.toLowerCase())
-                    );
-            const studentNumberMatches =
-                studentNumber === "" ||
-                eval(
-                    item.number_of_students + studentNumberOperator + studentNumber
-                );
-            return (
-                facultyMatches &&
-                degreeMatches &&
-                genderMatches &&
-                semesterMatches &&
-                studentNumberMatches
-            );
-        });
-
-        if (groupField !== "") {
-            const groupedData = {};
-            filteredData.forEach((item) => {
-                const key = item[groupField];
-                if (!groupedData[key]) {
-                    groupedData[key] = [];
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            console.log('JavaScript is loaded');
+    
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-                groupedData[key].push(item);
             });
-            filteredData = groupedData;
-        }
-
-        if (sortOrder !== "") {
-            filteredData = Object.entries(filteredData).sort((a, b) => {
-                if (sortOrder === "asc") {
-                    return a[1].length - b[1].length;
+    
+            let jsonData = null; 
+    
+            $('#filterForm').on('submit', function(event) {
+                event.preventDefault(); 
+    
+                console.log('Form submit intercepted');
+                var dynamicAction = '/api/statistics_data';
+                $(this).attr('action', dynamicAction);
+                console.log('Form action set to:', $(this).attr('action'));
+    
+                $('#outputContainer').text('Loading...');
+    
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        console.log('Response received:', response);
+                        if (response.data) {
+                            jsonData = {
+                                total_count: response.data.length,
+                                results: response.data.map(item => ({
+                                    Degree: item.student_level || 'N/A',
+                                    NumberOfStudents: item.count || '0',
+                                    Gender: item.gender || 'N/A',
+                                    Semester: item.study_year_id || 'N/A',
+                                    Faculty: item.faculty_id || 'N/A'
+                                }))
+                            };
+                            $('#outputContainer').text(JSON.stringify(jsonData, null, 2));
+                        } else {
+                            $('#outputContainer').text('No data found.');
+                            jsonData = null; 
+                        }
+                    },
+                    error: function(xhr) {
+                        console.log('Error occurred:', xhr.responseText);
+                        $('#outputContainer').text('An error occurred: ' + xhr.responseText);
+                        jsonData = null; 
+                    }
+                });
+            });
+    
+            $('#downloadButton').on('click', function() {
+                if (jsonData) {
+               
+                    let blob = new Blob([JSON.stringify(jsonData, null, 2)], {type: 'application/json'});
+                    let url = URL.createObjectURL(blob);
+    
+                    let a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'data.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+    
+                    URL.revokeObjectURL(url);
                 } else {
-                    return b[1].length - a[1].length;
+                    alert('No data to download.');
                 }
             });
-        }
-
-        if (limit !== "" && !isNaN(limit) && Number(limit) > 0) {
-            if (Array.isArray(filteredData)) {
-                filteredData = filteredData.slice(0, Number(limit));
-            } else {
-                const limitedData = {};
-                Object.entries(filteredData)
-                    .slice(0, Number(limit))
-                    .forEach((entry) => {
-                        limitedData[entry[0]] = entry[1];
-                    });
-                filteredData = limitedData;
-            }
-        }
-
-        displayFilteredData();
-    }
-
-    function displayFilteredData() {
-        const outputContainer = document.getElementById("outputContainer");
-        const faculty = document.getElementById("facultyInput").value;
-        const degree = document.getElementById("degreeInput").value;
-        const gender = document.getElementById("genderInput").value;
-        const semester = document.getElementById("semesterInput").value;
-        const studentNumber =
-            document.getElementById("studentNumberInput").value;
-
-        if (
-            faculty === "" &&
-            degree === "" &&
-            gender === "" &&
-            semester === "" &&
-            studentNumber === ""
-        ) {
-            outputContainer.innerHTML = "<pre>[]</pre>";
-        } else {
-            outputContainer.innerHTML =
-                "<pre>" + JSON.stringify(filteredData, null, 2) + "</pre>";
-        }
-    }
-
-    function resetFilters() {
-        document.getElementById("filterForm").reset();
-        filteredData = [];
-        displayFilteredData();
-    }
-
-    function downloadData() {
-        const jsonData = JSON.stringify(filteredData, null, 2);
-        const blob = new Blob([jsonData], {type: "application/json"});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "SEUAPI.json";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
-
-    document
-        .getElementById("filterButton")
-        .addEventListener("click", filterData);
-    document
-        .getElementById("resetButton")
-        .addEventListener("click", resetFilters);
-    document
-        .getElementById("downloadButton")
-        .addEventListener("click", downloadData);
-
-    function getFacaulties() {
-
-    }
-</script>
-</body>
+    
+            $('#resetButton').on('click', function() {
+                // Reset the form fields
+                $('#filterForm')[0].reset();
+    
+                // Clear the output container
+                $('#outputContainer').text('');
+    
+                // Clear the JSON data
+                jsonData = null;
+            });
+        });
+    </script>
+  </body>
 </html>

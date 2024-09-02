@@ -12,6 +12,7 @@ class IndexController extends Controller
 {
     public function index()
     {
+
         $faculties = Faculty::all();
         $semesters = StudyTerm::all();
         $years = StudyYear::all();
@@ -26,4 +27,7 @@ class IndexController extends Controller
             'years'
         ));
     }
+
+  
+    
 }

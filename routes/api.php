@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\StatisticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/statistics', [\App\Http\Controllers\Api\StatisticsController::class, 'index']);
+Route::get('/statistics', [StatisticsController::class, 'index']);
+
+Route::post('/statistics_data', [StatisticsController::class, 'getStatistics']);
