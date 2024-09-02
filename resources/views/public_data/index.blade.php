@@ -104,6 +104,7 @@
         text-align: right;
       }
     </style>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
   </head>
   <body>
     <header>
@@ -210,6 +211,9 @@
                 </button>
                 <button type="button" id="downloadButton" class="btn btn-info">
                     Download JSON
+                </button>
+                <button type="button" id="downloadExcelButton" class="btn btn-success">
+                    Download Excel
                 </button>
             </div>
         </form>
@@ -344,11 +348,14 @@
                             jsonData = {
                                 total_count: response.data.length,
                                 results: response.data.map(item => ({
-                                    Degree: item.student_level || 'N/A',
-                                    NumberOfStudents: item.count || '0',
-                                    Gender: item.gender || 'N/A',
-                                    Semester: item.study_year_id || 'N/A',
-                                    Faculty: item.faculty_id || 'N/A'
+                                    id: item.id,
+                    gender: item.gender || 'N/A',
+                    student_level: item.student_level || 'N/A',
+                    count: item.count || '0',
+                    faculty_department_id: item.faculty_department_id || 'N/A',
+                    faculty_id: item.faculty_id || 'N/A',
+                    study_year_id: item.study_year_id || 'N/A',
+                    study_term_id: item.study_term_id || 'N/A'
                                 }))
                             };
                             $('#outputContainer').text(JSON.stringify(jsonData, null, 2));
@@ -379,6 +386,17 @@
                     document.body.removeChild(a);
 
                     URL.revokeObjectURL(url);
+                } else {
+                    alert('No data to download.');
+                }
+            });
+
+              $('#downloadExcelButton').on('click', function() {
+                if (jsonData) {
+                    const worksheet = XLSX.utils.json_to_sheet(jsonData.results);
+                    const workbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(workbook, worksheet, "Graduated Students");
+                    XLSX.writeFile(workbook, 'data.xlsx');
                 } else {
                     alert('No data to download.');
                 }

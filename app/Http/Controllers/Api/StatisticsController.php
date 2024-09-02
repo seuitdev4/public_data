@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Resources\StudentReportDepartmentCollection;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ListStudentReportRequest;
 use App\Services\Interfaces\StatisticsServiceInterface;
