@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>SEUAPI - Graduated Students Explorer</title>
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -68,104 +68,44 @@
         <form id="filterForm">
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="facultyInput" class="form-label">Faculty Name:</label>
-                    <input
-                        type="text"
-                        id="facultyInput"
-                        class="form-control"
-                        placeholder="e.g. Engineering, Law"
-                    />
-                    <small class="form-text text-muted"
-                    >Separate multiple faculties with a space</small
-                    >
+                    <label for="facultyInput" class="form-label">{{ __('general.faculties') }}:</label>
+                    <select id="faculty" class="form-select">
+                        <option value="">{{ __('general.all') }}</option>
+                        @foreach($faculties as $faculty)
+                            <option value="{{ $faculty->id }}">{{ $faculty->title }}</option>
+                        @endforeach
+                    </select>
+
                 </div>
                 <div class="col-md-6">
-                    <label for="degreeInput" class="form-label">Degree Name:</label>
-                    <input
-                        type="text"
-                        id="degreeInput"
-                        class="form-control"
-                        placeholder="e.g. master, bachelor"
-                    />
-                    <small class="form-text text-muted"
-                    >Case sensitive, use lowercase</small
-                    >
+                    <label for="degreeInput" class="form-label">{{ __('general.degree_name') }}:</label>
+                    <select id="level" class="form-select">
+                    <option value="">{{ __('general.all') }}</option>
+                    @foreach($levels as $level)
+                        <option value="{{ $level->id }}">{{ $level->title }}</option>
+                    @endforeach
+                    </select>
+
                 </div>
                 <div class="col-md-6">
                     <label for="genderInput" class="form-label">Gender:</label>
-                    <input
-                        type="text"
-                        id="genderInput"
-                        class="form-control"
-                        placeholder="e.g. male, female"
-                    />
+                    <select id="gender" class="form-select">
+                        <option value="">{{ __('general.all') }}</option>
+                        @foreach($genders as $gender)
+                            <option value="{{$gender }}">{{ __('general.'.$gender) }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-6">
                     <label for="semesterInput" class="form-label">Semester:</label>
-                    <input
-                        type="text"
-                        id="semesterInput"
-                        class="form-control"
-                        placeholder="e.g. semester 1444"
-                    />
-                    <small class="form-text text-muted"
-                    >Separate multiple semesters with a space</small
-                    >
-                </div>
-                <div class="col-md-6">
-                    <label for="studentNumberInput" class="form-label"
-                    >Total Students:</label
-                    >
-                    <div class="input-group">
-                        <input
-                            type="number"
-                            id="studentNumberInput"
-                            class="form-control"
-                            placeholder="e.g. 50"
-                        />
-                        <select id="studentNumberOperator" class="form-select">
-                            <option value="==">equals (=)</option>
-                            <option value="!=">not equals (!=)</option>
-                            <option value=">">greater than (>)</option>
-                            <option value="<">less than (<)</option>
-                            <option value=">=">greater than or equal to (>=)</option>
-                            <option value="<=">less than or equal to (<=)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="groupField" class="form-label">Group by:</label>
-                    <select id="groupField" class="form-select">
-                        <option value="">None</option>
-                        <option value="faculty_name">Faculty Name</option>
-                        <option value="degree_name">Degree Name</option>
-                        <option value="gender">Gender</option>
-                        <option value="Semester">Semester</option>
+                    <select id="faculty" class="form-select">
+                        <option value="">{{ __('general.all') }}</option>
+                        @foreach($faculties as $faculty)
+                            <option value="{{ $faculty->id }}">{{ $faculty->title }}</option>
+                        @endforeach
                     </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="sortOrder" class="form-label"
-                    >Order by (based on total students):</label
-                    >
-                    <select id="sortOrder" class="form-select">
-                        <option value="">None</option>
-                        <option value="asc">ASC</option>
-                        <option value="desc">DESC</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="limitInput" class="form-label"
-                    >Limit on records:</label
-                    >
-                    <input
-                        type="number"
-                        id="limitInput"
-                        class="form-control"
-                        placeholder="e.g. 5, 10"
-                    />
                     <small class="form-text text-muted"
-                    >Minimum rows to view and load the dataset result</small
-                    >
+                    >Choose multiple semesters</small>
                 </div>
             </div>
 
@@ -173,8 +113,7 @@
                 <button
                     type="button"
                     id="filterButton"
-                    class="btn btn-primary me-2"
-                >
+                    class="btn btn-primary me-2">
                     Execute
                 </button>
                 <button
@@ -465,7 +404,7 @@
 
     function downloadData() {
         const jsonData = JSON.stringify(filteredData, null, 2);
-        const blob = new Blob([jsonData], { type: "application/json" });
+        const blob = new Blob([jsonData], {type: "application/json"});
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;

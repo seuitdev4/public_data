@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\Interfaces\StatisticsRepositoryInterface;
+use App\Repositories\StatisticsRepository;
+use App\Services\Interfaces\StatisticsServiceInterface;
+use App\Services\StatisticsService;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -47,6 +51,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        $this->app->bind(StatisticsRepositoryInterface::class, StatisticsRepository::class);
+        $this->app->bind(StatisticsServiceInterface::class, StatisticsService::class);
     }
 
     /**
