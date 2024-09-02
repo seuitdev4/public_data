@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-//            FacultySeeder::class,
-//            DepartmentSeeder::class,
-//            LevelSeeder::class,
+            FacultySeeder::class,
+            DepartmentSeeder::class,
+            LevelSeeder::class,
             StudyYearSeeder::class,
             StudyTermSeeder::class,
             StudentReportPerDepartmentSeeder::class,
