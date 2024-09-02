@@ -19,6 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/statistics', [StatisticsController::class, 'index']);
-
-Route::post('/statistics_data', [StatisticsController::class, 'getStatistics']);
+Route::get('/statistics', [StatisticsController::class, 'getStatistics']);

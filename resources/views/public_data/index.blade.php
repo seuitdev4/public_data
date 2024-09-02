@@ -149,12 +149,12 @@
           relationships between items.
         </p>
 
-        <form id="filterForm" method="POST"> 
+        <form id="filterForm" method="GET">
             @csrf
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="facultyInput" class="form-label">{{ __('general.faculties') }}:</label>
-                    <select id="faculty" class="form-select" name="faculties[]" multiple>
+                    <select id="faculty" class="form-select" name="faculty_id[]" multiple>
                         <option value="">{{ __('general.all') }}</option>
                         @foreach($faculties as $faculty)
                             <option value="{{ $faculty->id }}">{{ $faculty->title }}</option>
@@ -164,7 +164,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="degreeInput" class="form-label">{{ __('general.degree_name') }}:</label>
-                    <select id="level" class="form-select"  name="levels[]" multiple>
+                    <select id="level" class="form-select"  name="student_level[]" multiple>
                     <option value="">{{ __('general.all') }}</option>
                     @foreach($levels as $level)
                         <option value="{{ $level->id }}">{{ $level->title }}</option>
@@ -174,7 +174,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="genderInput" class="form-label">Gender:</label>
-                    <select id="gender" class="form-select" name="genders[]" multiple>
+                    <select id="gender" class="form-select" name="gender[]" multiple>
                         <option value="">{{ __('general.all') }}</option>
                         @foreach($genders as $gender)
                             <option value="{{$gender }}">{{ __('general.'.$gender) }}</option>
@@ -183,10 +183,10 @@
                 </div>
                 <div class="col-md-6">
                     <label for="semesterInput" class="form-label">Semester:</label>
-                    <select id="faculty" class="form-select" name="semesters[]" multiple>
+                    <select id="faculty" class="form-select" name="study_term_id[]" multiple>
                         <option value="">{{ __('general.all') }}</option>
-                        @foreach($faculties as $faculty)
-                            <option value="{{ $faculty->id }}">{{ $faculty->title }}</option>
+                        @foreach($semesters as $semester)
+                            <option value="{{ $semester->id }}">{{ $semester->title }}</option>
                         @endforeach
                     </select>
                     <small class="form-text text-muted"
@@ -315,25 +315,25 @@
     <script>
         $(document).ready(function() {
             console.log('JavaScript is loaded');
-    
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-    
-            let jsonData = null; 
-    
+
+            let jsonData = null;
+
             $('#filterForm').on('submit', function(event) {
-                event.preventDefault(); 
-    
+                event.preventDefault();
+
                 console.log('Form submit intercepted');
                 var dynamicAction = '/api/statistics_data';
                 $(this).attr('action', dynamicAction);
                 console.log('Form action set to:', $(this).attr('action'));
-    
+
                 $('#outputContainer').text('Loading...');
-    
+
                 $.ajax({
                     url: $(this).attr('action'),
                     type: 'POST',
@@ -354,43 +354,43 @@
                             $('#outputContainer').text(JSON.stringify(jsonData, null, 2));
                         } else {
                             $('#outputContainer').text('No data found.');
-                            jsonData = null; 
+                            jsonData = null;
                         }
                     },
                     error: function(xhr) {
                         console.log('Error occurred:', xhr.responseText);
                         $('#outputContainer').text('An error occurred: ' + xhr.responseText);
-                        jsonData = null; 
+                        jsonData = null;
                     }
                 });
             });
-    
+
             $('#downloadButton').on('click', function() {
                 if (jsonData) {
-               
+
                     let blob = new Blob([JSON.stringify(jsonData, null, 2)], {type: 'application/json'});
                     let url = URL.createObjectURL(blob);
-    
+
                     let a = document.createElement('a');
                     a.href = url;
                     a.download = 'data.json';
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-    
+
                     URL.revokeObjectURL(url);
                 } else {
                     alert('No data to download.');
                 }
             });
-    
+
             $('#resetButton').on('click', function() {
                 // Reset the form fields
                 $('#filterForm')[0].reset();
-    
+
                 // Clear the output container
                 $('#outputContainer').text('');
-    
+
                 // Clear the JSON data
                 jsonData = null;
             });
