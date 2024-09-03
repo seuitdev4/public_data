@@ -27,6 +27,7 @@ class StatisticsRepository extends BaseRepository implements StatisticsRepositor
                 }
             }
         }
+
         return $query->get();
     }
 }
