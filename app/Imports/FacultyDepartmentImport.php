@@ -17,13 +17,13 @@ class FacultyDepartmentImport implements ToModel,WithHeadingRow
     public function model(array $row)
     {
         $faculty = Faculty::where('code', $row['faculty_code'])->first();
-        $separtment = FacultyDepartment::updateOrCreate(
+        $department = FacultyDepartment::updateOrCreate(
             ['code' => $row['code']],
             ['faculty_id' => $faculty->id]
         );
 
-        $separtment->translateOrNew('en')->title = $row['english_title'];
-        $separtment->translateOrNew('ar')->title = $row['arabic_title'];
-        $separtment->save();
+        $department->translateOrNew('en')->title = $row['english_title'];
+        $department->translateOrNew('ar')->title = $row['arabic_title'];
+        $department->save();
     }
 }

@@ -10,7 +10,7 @@ use App\Models\StudyYear;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class BUStudentReportPerDepartmentImport implements ToModel, WithHeadingRow
+class UDStudentReportPerDepartmentImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -20,11 +20,11 @@ class BUStudentReportPerDepartmentImport implements ToModel, WithHeadingRow
     public function model(array $studentsDepartmentReport)
     {
         $studyYear = StudyYear::whereTranslationLike('title', "%" . $studentsDepartmentReport['years'] . "%")->first();
+
         $studyTerm = StudyTerm::whereTranslationLike('title', "%" . $studentsDepartmentReport['semester'] . "%")
             ->where('study_year_id', $studyYear->id)->first();
 
         foreach ($studentsDepartmentReport as $key => $row) {
-            $gender = '';
             if (strpos($key, '_female') !== false) {
                 $departmentName = str_replace('_female', '', $key);
                 $departmentName = str_replace('_', ' ', $departmentName);
@@ -42,7 +42,7 @@ class BUStudentReportPerDepartmentImport implements ToModel, WithHeadingRow
             $facultyDepartment = FacultyDepartment::whereTranslationLike('title', "%" . $departmentName . "%")->first();
             $studentsReport = StudentReportPerDepartment::updateOrCreate([
                 'gender' => $gender,
-                'student_level' => Level::where('code', 'UG')->first()->id,//UG
+                'student_level' => Level::where('code', 'UD')->first()->id,
                 'count' => (int)$row,
                 'faculty_department_id' => $facultyDepartment->id,
                 'faculty_id' => $facultyDepartment->faculty_id,
