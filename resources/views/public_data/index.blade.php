@@ -20,6 +20,10 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+        rel="stylesheet"
+    />
     <style>
         body {
             background-color: #f0f2f5;
@@ -114,6 +118,7 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 <body>
 <header>
@@ -170,7 +175,6 @@
                             <option value="{{ $faculty->id }}">{{ $faculty->title }}</option>
                         @endforeach
                     </select>
-
                 </div>
                 <div class="col-md-6">
                     <label for="degreeInput" class="form-label">{{ __('general.degree_name') }}:</label>
@@ -180,7 +184,6 @@
                             <option value="{{ $level->id }}">{{ $level->title }}</option>
                         @endforeach
                     </select>
-
                 </div>
                 <div class="col-md-6">
                     <label for="genderInput" class="form-label">Gender:</label>
@@ -193,14 +196,13 @@
                 </div>
                 <div class="col-md-6">
                     <label for="semesterInput" class="form-label">Semester:</label>
-                    <select id="faculty" class="form-select" name="study_term_id[]" multiple>
+                    <select id="semester" class="form-select" name="study_term_id[]" multiple>
                         <option value="">{{ __('general.all') }}</option>
                         @foreach($semesters as $semester)
                             <option value="{{ $semester->id }}">{{ $semester->title }}</option>
                         @endforeach
                     </select>
-                    <small class="form-text text-muted"
-                    >Choose multiple semesters</small>
+                    <small class="form-text text-muted">Choose multiple semesters</small>
                 </div>
             </div>
 
@@ -214,8 +216,7 @@
                 <button
                     type="button"
                     id="resetButton"
-                    class="btn btn-secondary me-2"
-                >
+                    class="btn btn-secondary me-2">
                     Reset
                 </button>
                 <button type="button" id="downloadButton" class="btn btn-info">
@@ -232,72 +233,71 @@
             <pre id="outputContainer"></pre>
         </div>
 
-
         <div class="catalog-table mt-4">
             <h3>API Catalog</h3>
             <table class="table table-bordered">
                 <thead>
-                <tr>
-                    <th>Parameters</th>
-                    <th>Terms</th>
-                </tr>
+                    <tr>
+                        <th>Parameters</th>
+                        <th>Terms</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td rowspan="11">Faculty</td>
-                    <td>Faculty name1</td>
-                </tr>
-                <tr>
-                    <td>Faculty name2</td>
-                </tr>
-                <tr>
-                    <td>Faculty name3</td>
-                </tr>
-                <tr>
-                    <td>Faculty name4</td>
-                </tr>
-                <tr>
-                    <td>Faculty name5</td>
-                </tr>
-                <tr>
-                    <td>Faculty name6</td>
-                </tr>
-                <tr>
-                    <td>Faculty name7</td>
-                </tr>
-                <tr>
-                    <td>Faculty name8</td>
-                </tr>
-                <tr>
-                    <td>Faculty name9</td>
-                </tr>
-                <tr>
-                    <td>Faculty name10</td>
-                </tr>
-                <tr>
-                    <td>Faculty name11</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">Gender</td>
-                    <td>male</td>
-                </tr>
-                <tr>
-                    <td>female</td>
-                </tr>
-                <tr>
-                    <td rowspan="3">Degree</td>
-                    <td>master</td>
-                </tr>
-                <tr>
-                    <td>phd</td>
-                </tr>
-                <tr>
-                    <td>bachelor</td>
-                </tr>
-                <tr>
-                    <td>Semester</td>
-                    <td>1445</td>
-                </tr>
+                    <tr>
+                        <td rowspan="11">Faculty</td>
+                        <td>Faculty name1</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name2</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name3</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name4</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name5</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name6</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name7</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name8</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name9</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name10</td>
+                    </tr>
+                    <tr>
+                        <td>Faculty name11</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Gender</td>
+                        <td>male</td>
+                    </tr>
+                    <tr>
+                        <td>female</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">Degree</td>
+                        <td>master</td>
+                    </tr>
+                    <tr>
+                        <td>phd</td>
+                    </tr>
+                    <tr>
+                        <td>bachelor</td>
+                    </tr>
+                    <tr>
+                        <td>Semester</td>
+                        <td>1445</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -336,6 +336,12 @@
 
         let jsonData = null;
 
+        // Initialize Select2 for all select elements
+        $('select').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
+
         $('#filterForm').on('submit', function (event) {
             event.preventDefault();
 
@@ -346,31 +352,29 @@
 
             $('#outputContainer').text('Loading...');
 
+            var serializedData = $(this).serializeArray();
+            var requestData = {};
 
-    var serializedData = $(this).serializeArray();
-    var requestData = {};
-
-    // Convert serialized array to an object
-    $.each(serializedData, function() {
-        if (this.value) {
-            if (this.name in requestData) {
-                if (!Array.isArray(requestData[this.name])) {
-                    requestData[this.name] = [requestData[this.name]];
+            // Convert serialized array to an object
+            $.each(serializedData, function() {
+                if (this.value) {
+                    if (this.name in requestData) {
+                        if (!Array.isArray(requestData[this.name])) {
+                            requestData[this.name] = [requestData[this.name]];
+                        }
+                        requestData[this.name].push(this.value);
+                    } else {
+                        requestData[this.name] = this.value;
+                    }
                 }
-                requestData[this.name].push(this.value);
-            } else {
-                requestData[this.name] = this.value;
-            }
-        }
+            });
 
-    });
-
-    console.log('Request data:', requestData);
+            console.log('Request data:', requestData);
 
             $.ajax({
                 url: $(this).attr('action'),
                 type: 'GET',
-                data:requestData,
+                data: requestData,
                 success: function (response) {
                     console.log('Response received:', response);
                     if (response.data) {
@@ -403,7 +407,6 @@
 
         $('#downloadButton').on('click', function () {
             if (jsonData) {
-
                 let blob = new Blob([JSON.stringify(jsonData, null, 2)], {type: 'application/json'});
                 let url = URL.createObjectURL(blob);
 
@@ -440,6 +443,9 @@
 
             // Clear the JSON data
             jsonData = null;
+
+            // Reset Select2
+            $('select').val(null).trigger('change');
         });
     });
 </script>
