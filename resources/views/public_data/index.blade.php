@@ -379,7 +379,7 @@
                     console.log('Response received:', response);
                     if (response.data) {
                         jsonData = {
-                            total_count: response.data.length,
+                            total_count: response.meta.total_student_count,
                             results: response.data.map(item => ({
                                 id: item.id,
                                 gender: item.gender || 'N/A',

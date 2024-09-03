@@ -24,23 +24,22 @@ class BUStudentReportPerDepartmentImport implements ToModel, WithHeadingRow
             ->where('study_year_id', $studyYear->id)->first();
 
         foreach ($studentsDepartmentReport as $key => $row) {
-            if (strpos($key, '_male') >= 0) {
-                $departmentName = str_replace('_male', '', $key);
-                $departmentName = str_replace('_', ' ', $departmentName);
-                $gender = 'male';
-            } elseif (strpos($key, '_female') >= 0) {
+            $gender = '';
+            if (strpos($key, '_female') !== false) {
                 $departmentName = str_replace('_female', '', $key);
                 $departmentName = str_replace('_', ' ', $departmentName);
                 $gender = 'female';
+            } elseif (strpos($key, '_male')!== false) {
+                $departmentName = str_replace('_male', '', $key);
+                $departmentName = str_replace('_', ' ', $departmentName);
+                $gender = 'male';
             } else {
                 continue;
             }
-
             if (strpos($key, 'e_commerce') >= 0 ) {
                 $departmentName = 'E-commerce';
             }
             $facultyDepartment = FacultyDepartment::whereTranslationLike('title', "%" . $departmentName . "%")->first();
-
             $studentsReport = StudentReportPerDepartment::updateOrCreate([
                 'gender' => $gender,
                 'student_level' => Level::where('code', 'UG')->first()->id,//UG

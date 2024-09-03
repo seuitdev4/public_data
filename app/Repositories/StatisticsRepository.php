@@ -18,15 +18,15 @@ class StatisticsRepository extends BaseRepository implements StatisticsRepositor
     public function getStudentStatisticsReport(array $filters)
     {
         if (!empty($filters)) {
+            $query =  $this->model->with('faculty');
             foreach ($filters as $key => $value) {
-                $this->model->with('faculty');
                 if (is_array($value)) {
-                    $this->model->where($key, 'in', $value);
+                    $query->whereIn($key, $value);
                 } else {
-                    $this->model->where($key, $value);
+                    $query->where($key, $value);
                 }
             }
         }
-        return $this->model->get();
+        return $query->get();
     }
 }
