@@ -346,20 +346,23 @@
 
             $('#outputContainer').text('Loading...');
 
-           
+
     var serializedData = $(this).serializeArray();
     var requestData = {};
 
     // Convert serialized array to an object
     $.each(serializedData, function() {
-        if (this.name in requestData) {
-            if (!Array.isArray(requestData[this.name])) {
-                requestData[this.name] = [requestData[this.name]];
+        if (this.value) {
+            if (this.name in requestData) {
+                if (!Array.isArray(requestData[this.name])) {
+                    requestData[this.name] = [requestData[this.name]];
+                }
+                requestData[this.name].push(this.value);
+            } else {
+                requestData[this.name] = this.value;
             }
-            requestData[this.name].push(this.value);
-        } else {
-            requestData[this.name] = this.value;
         }
+
     });
 
     console.log('Request data:', requestData);
@@ -367,7 +370,7 @@
             $.ajax({
                 url: $(this).attr('action'),
                 type: 'GET',
-                data: $(this).serialize(),
+                data:requestData,
                 success: function (response) {
                     console.log('Response received:', response);
                     if (response.data) {
