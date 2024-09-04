@@ -24,7 +24,6 @@ class UGStudentReportPerDepartmentImport implements ToModel, WithHeadingRow
             ->where('study_year_id', $studyYear->id)->first();
 
         foreach ($studentsDepartmentReport as $key => $row) {
-            $gender = '';
             if (strpos($key, '_female') !== false) {
                 $departmentName = str_replace('_female', '', $key);
                 $departmentName = str_replace('_', ' ', $departmentName);
@@ -36,11 +35,13 @@ class UGStudentReportPerDepartmentImport implements ToModel, WithHeadingRow
             } else {
                 continue;
             }
-            if (strpos($key, 'e_commerce') >= 0 ) {
+            if (strpos($key, 'e_commerce') !== false) {
                 $departmentName = 'E-commerce';
             }
+
             $facultyDepartment = FacultyDepartment::whereTranslationLike('title', "%" . $departmentName . "%")->first();
-            $studentsReport = StudentReportPerDepartment::updateOrCreate([
+
+            StudentReportPerDepartment::updateOrCreate([
                 'gender' => $gender,
                 'student_level' => Level::where('code', 'UG')->first()->id,
                 'count' => (int)$row,
