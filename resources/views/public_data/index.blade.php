@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>SEUAPI - Graduated Students Explorer</title>
+    <title>SEUAPI - Students Statistics</title>
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -156,12 +156,11 @@
 
 <div class="container">
     <div class="main-container">
-        <h1 class="mb-4">Explore the API for Graduated Students</h1>
+        <h1 class="mb-4">Explore the Statistics API for Students</h1>
         <p class="mb-4">
             This API supports the
             <span class="text-danger">HTTP GET method</span>. Most API endpoints
-            return JSON. Endpoints are arranged hierarchically to illustrate the
-            relationships between items.
+            return JSON.
         </p>
 
         <form id="filterForm" method="get">
@@ -239,64 +238,30 @@
                 <thead>
                     <tr>
                         <th>Parameters</th>
-                        <th>Terms</th>
+                        <th>Type</th>
+                        <th>Value(s)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td rowspan="11">Faculty</td>
-                        <td>Faculty name1</td>
+                        <td >faculty_id</td>
+                        <td><span> array </span></td>
+                        <td>[Health Sciences, ...]</td>
                     </tr>
                     <tr>
-                        <td>Faculty name2</td>
+                        <td >gender</td>
+                        <td><span> array </span></td>
+                        <td>[male, female]</td>
                     </tr>
                     <tr>
-                        <td>Faculty name3</td>
+                        <td>level</td>
+                        <td><span> array </span></td>
+                        <td>[UG, GR , UD]</td>
                     </tr>
                     <tr>
-                        <td>Faculty name4</td>
-                    </tr>
-                    <tr>
-                        <td>Faculty name5</td>
-                    </tr>
-                    <tr>
-                        <td>Faculty name6</td>
-                    </tr>
-                    <tr>
-                        <td>Faculty name7</td>
-                    </tr>
-                    <tr>
-                        <td>Faculty name8</td>
-                    </tr>
-                    <tr>
-                        <td>Faculty name9</td>
-                    </tr>
-                    <tr>
-                        <td>Faculty name10</td>
-                    </tr>
-                    <tr>
-                        <td>Faculty name11</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2">Gender</td>
-                        <td>male</td>
-                    </tr>
-                    <tr>
-                        <td>female</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="3">Degree</td>
-                        <td>master</td>
-                    </tr>
-                    <tr>
-                        <td>phd</td>
-                    </tr>
-                    <tr>
-                        <td>bachelor</td>
-                    </tr>
-                    <tr>
-                        <td>Semester</td>
-                        <td>1445</td>
+                        <td >study_term_id</td>
+                        <td><span> array </span></td>
+                        <td>["Second Semester 2018-2019", ...]</td>
                     </tr>
                 </tbody>
             </table>
