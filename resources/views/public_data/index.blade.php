@@ -117,31 +117,31 @@
             text-align: right;
         }
         .dropdown-menu {
-            border-radius: 0.3rem; 
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+            border-radius: 0.3rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .dropdown-item {
-            transition: background-color 0.3s, color 0.3s; 
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .dropdown-item:hover {
-            background-color: #2a9d8f; 
-            color: #ffffff; 
+            background-color: #42659d;
+            color: #ffffff;
         }
 
         .btn-primary {
-            background-color: #3fa8b3;
-            border-color: #3fa8b3;
-            color: #ffffff; 
-            padding: 4px 8px; 
-            border-radius: 0.5rem; 
-            transition: background-color 0.3s, transform 0.2s; 
+            background-color: #42659d;
+            border-color: #42659d;
+            color: #ffffff;
+            padding: 4px 8px;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         .btn-primary:hover {
-            background-color: #047faf; 
-            transform: scale(1.05); 
+            background-color: #047faf;
+            transform: scale(1.05);
         }
 
         .form-select {
@@ -259,7 +259,6 @@
                             <option value="{{ $semester->id }}">{{ $semester->title }}</option>
                         @endforeach
                     </select>
-                    <small class="form-text text-muted">Choose multiple semesters</small>
                 </div>
             </div>
 
@@ -274,7 +273,7 @@
                     type="button"
                     id="resetButton"
                     class="btn btn-secondary me-2">
-                    {{ __('info.Reset') }}
+                    {{ __('info.reset') }}
                 </button>
                 <button type="button" id="downloadButton" class="btn btn-info">
                     {{ __('info.download_json') }}
