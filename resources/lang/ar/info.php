@@ -23,4 +23,5 @@ return [
     'privacy_policy' => 'سياسة الخصوصية',
     'terms_of_service' => 'شروط الخدمة',
     'contact_us' => 'اتصل بنا',
+    'title' => 'SEUAPI - احصائيات اعداد الطلبه',
 ];

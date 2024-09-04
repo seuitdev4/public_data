@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>SEUAPI - Students Statistics</title>
+    <title>{{ __('info.title') }}</title>
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -163,10 +163,10 @@
             </div>
         </div>
     </header>
-    
 
-  
- 
+
+
+
 <div class="container">
     <div class="main-container">
         <h1 class="mb-4">  <h1>{{ __('info.welcome_message') }}</h1></h1>
@@ -261,7 +261,7 @@
                         <td>[Health Sciences, ...]</td>
                     </tr>
                     <tr>
-                        <td >{{ __('info.gender') }}gender</td>
+                        <td >{{ __('info.gender') }}</td>
                         <td><span> array </span></td>
                         <td>[male, female]</td>
                     </tr>
