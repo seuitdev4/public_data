@@ -144,6 +144,23 @@
             transform: scale(1.05); 
         }
 
+        .form-select {
+            width: 100%; 
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem; 
+            border: 1px solid #ccc; 
+        }
+
+        @media (max-width: 576px) {
+        .form-select {
+            font-size: 1rem;
+            }
+        .hide-on-mobile {
+            display: none; /* Hide the image */
+          }
+        }
+        
+
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -185,7 +202,7 @@
                     <img
                         src="https://seu.edu.sa/media/5404/pattern.png"
                         alt="Pattern"
-                        class="img-fluid"
+                        class="img-fluid hide-on-mobile"
                         style="max-height: 50px"
                     />
                 </div>
