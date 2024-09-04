@@ -89,6 +89,7 @@
 
         header .img-fluid {
             max-height: 50px;
+            margin-left: 10px;
         }
 
         @media (max-width: 767px) {
@@ -115,6 +116,34 @@
             padding: 30px 0 0;
             text-align: right;
         }
+        .dropdown-menu {
+            border-radius: 0.3rem; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        .dropdown-item {
+            transition: background-color 0.3s, color 0.3s; 
+        }
+
+        .dropdown-item:hover {
+            background-color: #2a9d8f; 
+            color: #ffffff; 
+        }
+
+        .btn-primary {
+            background-color: #3fa8b3;
+            border-color: #3fa8b3;
+            color: #ffffff; 
+            padding: 4px 8px; 
+            border-radius: 0.5rem; 
+            transition: background-color 0.3s, transform 0.2s; 
+        }
+
+        .btn-primary:hover {
+            background-color: #047faf; 
+            transform: scale(1.05); 
+        }
+
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -145,12 +174,12 @@
                 </div>
                 <div class="col-md-3 d-flex justify-content-end align-items-center">
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ app()->getLocale() === 'ar' ? 'Arabic' : 'English' }}
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ app()->getLocale() === 'ar' ? 'العربية' : 'English' }}
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
                             <li><a class="dropdown-item" href="{{ url('/lang/en') }}">English</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/lang/ar') }}">Arabic</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/lang/ar') }}">العربية</a></li>
                         </ul>
                     </div>
                     <img
