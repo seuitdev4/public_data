@@ -3,6 +3,9 @@
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'index']);
+
+Route::get('/lang/{lang}', function ($lang) {
+    if (in_array($lang, ['en', 'ar'])) {
+        Session::put('applocale', $lang);
+    }
+    return redirect()->back();
+});

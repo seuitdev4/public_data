@@ -119,48 +119,60 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<header>
-    <div class="container">
-        <div class="row align-items-center justify-content-between">
-            <div class="col-md-3 text-md-start text-center mb-2 mb-md-0">
-                <img
-                    src="https://seu.edu.sa/media/1124/2030.png"
-                    alt="2030 Logo"
-                    class="img-fluid"
-                    style="max-height: 50px"
-                />
-            </div>
-            <div class="col-md-6 text-center">
-                <a href="https://www.seu.edu.sa" target="_blank">
+    <header>
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-3 text-md-start text-center mb-2 mb-md-0">
                     <img
-                        src="https://seu.edu.sa/media/6634/logo-2.png"
-                        alt="SEU Logo"
+                        src="https://seu.edu.sa/media/1124/2030.png"
+                        alt="2030 Logo"
                         class="img-fluid"
-                        style="max-height: 80px"
+                        style="max-height: 50px"
                     />
-                </a>
-            </div>
-            <div class="col-md-3 d-flex justify-content-end">
-                <img
-                    src="https://seu.edu.sa/media/5404/pattern.png"
-                    alt="Pattern"
-                    class="img-fluid"
-                    style="max-height: 50px"
-                />
+                </div>
+                <div class="col-md-6 text-center">
+                    <a href="https://www.seu.edu.sa" target="_blank">
+                        <img
+                            src="https://seu.edu.sa/media/6634/logo-2.png"
+                            alt="SEU Logo"
+                            class="img-fluid"
+                            style="max-height: 80px"
+                        />
+                    </a>
+                </div>
+                <div class="col-md-3 d-flex justify-content-end align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ app()->getLocale() === 'ar' ? 'Arabic' : 'English' }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                            <li><a class="dropdown-item" href="{{ url('/lang/en') }}">English</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/lang/ar') }}">Arabic</a></li>
+                        </ul>
+                    </div>
+                    <img
+                        src="https://seu.edu.sa/media/5404/pattern.png"
+                        alt="Pattern"
+                        class="img-fluid"
+                        style="max-height: 50px"
+                    />
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
+    
 
+  
+ 
 <div class="container">
     <div class="main-container">
-        <h1 class="mb-4">Explore the Statistics API for Students</h1>
+        <h1 class="mb-4">  <h1>{{ __('info.welcome_message') }}</h1></h1>
         <p class="mb-4">
-            This API supports the
-            <span class="text-danger">HTTP GET method</span>. Most API endpoints
-            return JSON.
+            {{ __('info.welcome_sub_info1') }}
+            <span class="text-danger"> {{ __('info.welcome_sub_info2') }}</span> .{{ __('info.welcome_sub_info3') }}
         </p>
 
         <form id="filterForm" method="get">
@@ -185,7 +197,7 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="genderInput" class="form-label">Gender:</label>
+                    <label for="genderInput" class="form-label">{{ __('info.gender') }}:</label>
                     <select id="gender" class="form-select" name="gender[]" multiple>
                         <option value="">{{ __('general.all') }}</option>
                         @foreach($genders as $gender)
@@ -194,7 +206,7 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <label for="semesterInput" class="form-label">Semester:</label>
+                    <label for="semesterInput" class="form-label">{{ __('info.semester') }}:</label>
                     <select id="semester" class="form-select" name="study_term_id[]" multiple>
                         <option value="">{{ __('general.all') }}</option>
                         @foreach($semesters as $semester)
@@ -210,56 +222,56 @@
                     type="submit"
                     id="filterButton"
                     class="btn btn-primary me-2">
-                    Execute
+                    {{ __('info.execute') }}
                 </button>
                 <button
                     type="button"
                     id="resetButton"
                     class="btn btn-secondary me-2">
-                    Reset
+                    {{ __('info.Reset') }}
                 </button>
                 <button type="button" id="downloadButton" class="btn btn-info">
-                    Download JSON
+                    {{ __('info.download_json') }}
                 </button>
                 <button type="button" id="downloadExcelButton" class="btn btn-success">
-                    Download Excel
+                    {{ __('info.download_excel') }}
                 </button>
             </div>
         </form>
 
         <div class="output-container mt-4">
-            <h3>Result</h3>
+            <h3>{{ __('info.result') }}</h3>
             <pre id="outputContainer"></pre>
         </div>
 
         <div class="catalog-table mt-4">
-            <h3>API Catalog</h3>
+            <h3>{{ __('info.api_catalog') }}</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Parameters</th>
-                        <th>Type</th>
-                        <th>Value(s)</th>
+                        <th>{{ __('info.parameters') }}</th>
+                        <th>{{ __('info.type') }}</th>
+                        <th>{{ __('info.value') }}(s)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td >faculty_id</td>
+                        <td >{{ __('info.faculty_id') }}</td>
                         <td><span> array </span></td>
                         <td>[Health Sciences, ...]</td>
                     </tr>
                     <tr>
-                        <td >gender</td>
+                        <td >{{ __('info.gender') }}gender</td>
                         <td><span> array </span></td>
                         <td>[male, female]</td>
                     </tr>
                     <tr>
-                        <td>level</td>
+                        <td>{{ __('info.level') }}</td>
                         <td><span> array </span></td>
                         <td>[UG, GR , UD]</td>
                     </tr>
                     <tr>
-                        <td >study_term_id</td>
+                        <td >{{ __('info.study_term_id') }}</td>
                         <td><span> array </span></td>
                         <td>["Second Semester 2018-2019", ...]</td>
                     </tr>
@@ -275,14 +287,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <p>
-                        Copyright 2024, All rights reserved to Saudi Electronic
-                        University.
+                        {{ __('info.copy_info') }}
                     </p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <a href="#" class="text-white me-2">Privacy Policy</a>
-                    <a href="#" class="text-white me-2">Terms of Service</a>
-                    <a href="#" class="text-white">Contact Us</a>
+                    <a href="#" class="text-white me-2">{{ __('info.privacy_policy') }}</a>
+                    <a href="#" class="text-white me-2">{{ __('info.terms_of_service') }}</a>
+                    <a href="#" class="text-white">{{ __('info.contact_us') }}</a>
                 </div>
             </div>
         </div>
