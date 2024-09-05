@@ -294,7 +294,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return $this
      */
-    public function limit(int $limit): static
+    public function limit(int $limit): BaseRepository
     {
         $this->take = $limit;
 
@@ -309,7 +309,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      * @param string $direction
      * @return $this
      */
-    public function orderBy(string $column, string $direction = 'asc'): static
+    public function orderBy(string $column, string $direction = 'asc'): BaseRepository
     {
         $this->orderBys[] = compact('column', 'direction');
 
@@ -362,7 +362,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return $this
      */
-    public function orWhere($column, $value, $operator = '='): static
+    public function orWhere($column, $value, $operator = '='): BaseRepository
     {
         $this->wheres[] = compact('column', 'value', 'operator');
 
@@ -378,7 +378,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return $this
      */
-    public function whereIn($column, $values): static
+    public function whereIn($column, $values): BaseRepository
     {
         $values = is_array($values) ? $values : array($values);
 
@@ -395,7 +395,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return $this
      */
-    public function with($relations): static
+    public function with($relations): BaseRepository
     {
         if (is_string($relations)) {
             $relations = func_get_args();
@@ -412,7 +412,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return $this
      */
-    protected function newQuery(): static
+    protected function newQuery(): BaseRepository
     {
         $this->query = $this->model->newQuery();
 
@@ -425,7 +425,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return $this
      */
-    protected function eagerLoad(): static
+    protected function eagerLoad(): BaseRepository
     {
         foreach ($this->with as $relation) {
             $this->query->with($relation);
@@ -440,7 +440,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return $this
      */
-    protected function setClauses(): static
+    protected function setClauses(): BaseRepository
     {
         foreach ($this->wheres as $where) {
             $this->query->where($where['column'], $where['operator'], $where['value']);
@@ -467,7 +467,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return $this
      */
-    protected function setScopes(): static
+    protected function setScopes(): BaseRepository
     {
         foreach ($this->scopes as $method => $args) {
             $this->query->$method(implode(', ', $args));
@@ -482,7 +482,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *
      * @return $this
      */
-    protected function unsetClauses(): static
+    protected function unsetClauses(): BaseRepository
     {
         $this->wheres = [];
         $this->whereIns = [];
