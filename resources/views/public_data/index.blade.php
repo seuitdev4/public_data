@@ -24,6 +24,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
         rel="stylesheet"
     />
+
     <style>
         body {
             background-color: #f0f2f5;
@@ -145,10 +146,10 @@
         }
 
         .form-select {
-            width: 100%; 
-            padding: 0.5rem 1rem; 
-            border-radius: 0.5rem; 
-            border: 1px solid #ccc; 
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ccc;
         }
 
         @media (max-width: 576px) {
@@ -163,7 +164,7 @@
             border-bottom: 1px solid #dee2e6;
             margin-bottom: 2rem;
         }
-        
+
         .nav-tabs .nav-link {
             color: #495057;
             background-color: #f8f9fa;
@@ -175,26 +176,35 @@
             padding: 0.75rem 1.5rem;
             font-weight: 500;
         }
-        
+
         .nav-tabs .nav-link:hover {
             border-color: #e9ecef #e9ecef #dee2e6;
         }
-        
+
         .nav-tabs .nav-link.active {
             color: #4a9caf;
             background-color: #fff;
             border-color: #dee2e6 #dee2e6 #fff;
         }
-        
+
         .tab-content {
             background-color: #fff;
             border: 1px solid #dee2e6;
             border-top: none;
             border-radius: 0 0 0.25rem 0.25rem;
         }
-        
+
 
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HDGZC38HCB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HDGZC38HCB');
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -301,7 +311,7 @@
                                     </select>
                                 </div>
                             </div>
-                
+
                             <div class="mt-4">
                                 <button
                                     type="submit"
@@ -323,12 +333,12 @@
                                 </button>
                             </div>
                         </form>
-                
+
                         <div class="output-container mt-4">
                             <h3>{{ __('info.result') }}</h3>
                             <pre id="outputContainer"></pre>
                         </div>
-                
+
                         <div class="catalog-table mt-4">
                             <h3>{{ __('info.api_catalog') }}</h3>
                             <table class="table table-bordered">
