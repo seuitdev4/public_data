@@ -159,6 +159,39 @@
             display: none; /* Hide the image */
           }
         }
+        .nav-tabs {
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-tabs .nav-link {
+            color: #495057;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-bottom: none;
+            margin-right: 0.5rem;
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+        }
+        
+        .nav-tabs .nav-link:hover {
+            border-color: #e9ecef #e9ecef #dee2e6;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: #4a9caf;
+            background-color: #fff;
+            border-color: #dee2e6 #dee2e6 #fff;
+        }
+        
+        .tab-content {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-top: none;
+            border-radius: 0 0 0.25rem 0.25rem;
+        }
         
 
     </style>
@@ -210,122 +243,137 @@
         </div>
     </header>
 
-
-
-
-<div class="container">
-    <div class="main-container">
-        <h1 class="mb-4">  <h1>{{ __('info.welcome_message') }}</h1></h1>
-        <p class="mb-4">
-            {{ __('info.welcome_sub_info1') }}
-            <span class="text-danger"> {{ __('info.welcome_sub_info2') }}</span> .{{ __('info.welcome_sub_info3') }}
-        </p>
-
-        <form id="filterForm" method="get">
-            @csrf
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <label for="facultyInput" class="form-label">{{ __('general.faculties') }}:</label>
-                    <select id="faculty" class="form-select" name="faculty_id[]" multiple>
-                        <option value="">{{ __('general.all') }}</option>
-                        @foreach($faculties as $faculty)
-                            <option value="{{ $faculty->id }}">{{ $faculty->title }}</option>
-                        @endforeach
-                    </select>
+    <div class="container">
+        <div class="main-container">
+            <h1 class="mb-4">{{ __('info.welcome_message') }}</h1>
+            <p class="mb-4">
+                {{ __('info.welcome_sub_info1') }}
+                <span class="text-danger"> {{ __('info.welcome_sub_info2') }}</span> .{{ __('info.welcome_sub_info3') }}
+            </p>
+            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="true">{{ __('info.general_tudents') }}</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="graduate-tab" data-bs-toggle="tab" data-bs-target="#graduate" type="button" role="tab" aria-controls="graduate" aria-selected="false">{{ __('info.graduate_students') }}</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+                    <div class="main-container">
+                        <form id="filterForm" method="get">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="facultyInput" class="form-label">{{ __('general.faculties') }}:</label>
+                                    <select id="faculty" class="form-select" name="faculty_id[]" multiple>
+                                        <option value="">{{ __('general.all') }}</option>
+                                        @foreach($faculties as $faculty)
+                                            <option value="{{ $faculty->id }}">{{ $faculty->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="degreeInput" class="form-label">{{ __('general.degree_name') }}:</label>
+                                    <select id="level" class="form-select" name="student_level[]" multiple>
+                                        <option value="">{{ __('general.all') }}</option>
+                                        @foreach($levels as $level)
+                                            <option value="{{ $level->id }}">{{ $level->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="genderInput" class="form-label">{{ __('info.gender') }}:</label>
+                                    <select id="gender" class="form-select" name="gender[]" multiple>
+                                        <option value="">{{ __('general.all') }}</option>
+                                        @foreach($genders as $gender)
+                                            <option value="{{$gender }}">{{ __('general.'.$gender) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="semesterInput" class="form-label">{{ __('info.semester') }}:</label>
+                                    <select id="semester" class="form-select" name="study_term_id[]" multiple>
+                                        <option value="">{{ __('general.all') }}</option>
+                                        @foreach($semesters as $semester)
+                                            <option value="{{ $semester->id }}">{{ $semester->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                
+                            <div class="mt-4">
+                                <button
+                                    type="submit"
+                                    id="filterButton"
+                                    class="btn btn-primary me-2">
+                                    {{ __('info.execute') }}
+                                </button>
+                                <button
+                                    type="button"
+                                    id="resetButton"
+                                    class="btn btn-secondary me-2">
+                                    {{ __('info.reset') }}
+                                </button>
+                                <button type="button" id="downloadButton" class="btn btn-info">
+                                    {{ __('info.download_json') }}
+                                </button>
+                                <button type="button" id="downloadExcelButton" class="btn btn-success">
+                                    {{ __('info.download_excel') }}
+                                </button>
+                            </div>
+                        </form>
+                
+                        <div class="output-container mt-4">
+                            <h3>{{ __('info.result') }}</h3>
+                            <pre id="outputContainer"></pre>
+                        </div>
+                
+                        <div class="catalog-table mt-4">
+                            <h3>{{ __('info.api_catalog') }}</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>{{ __('info.parameters') }}</th>
+                                        <th>{{ __('info.type') }}</th>
+                                        <th>{{ __('info.value') }}(s)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td >{{ __('info.faculty_id') }}</td>
+                                        <td><span> array </span></td>
+                                        <td>[Health Sciences, ...]</td>
+                                    </tr>
+                                    <tr>
+                                        <td >{{ __('info.gender') }}</td>
+                                        <td><span> array </span></td>
+                                        <td>[male, female]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ __('info.level') }}</td>
+                                        <td><span> array </span></td>
+                                        <td>[UG, GR , UD]</td>
+                                    </tr>
+                                    <tr>
+                                        <td >{{ __('info.study_term_id') }}</td>
+                                        <td><span> array </span></td>
+                                        <td>["Second Semester 2018-2019", ...]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="degreeInput" class="form-label">{{ __('general.degree_name') }}:</label>
-                    <select id="level" class="form-select" name="student_level[]" multiple>
-                        <option value="">{{ __('general.all') }}</option>
-                        @foreach($levels as $level)
-                            <option value="{{ $level->id }}">{{ $level->title }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="genderInput" class="form-label">{{ __('info.gender') }}:</label>
-                    <select id="gender" class="form-select" name="gender[]" multiple>
-                        <option value="">{{ __('general.all') }}</option>
-                        @foreach($genders as $gender)
-                            <option value="{{$gender }}">{{ __('general.'.$gender) }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="semesterInput" class="form-label">{{ __('info.semester') }}:</label>
-                    <select id="semester" class="form-select" name="study_term_id[]" multiple>
-                        <option value="">{{ __('general.all') }}</option>
-                        @foreach($semesters as $semester)
-                            <option value="{{ $semester->id }}">{{ $semester->title }}</option>
-                        @endforeach
-                    </select>
+                <div class="tab-pane fade" id="graduate" role="tabpanel" aria-labelledby="graduate-tab">
+                    <div class="main-container">
+                    <h2>Graduate Student Statistics</h2>
+                    <p>This section provides statistics specifically for graduate students. Additional filters and data visualizations for graduate students can be added here.</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="mt-4">
-                <button
-                    type="submit"
-                    id="filterButton"
-                    class="btn btn-primary me-2">
-                    {{ __('info.execute') }}
-                </button>
-                <button
-                    type="button"
-                    id="resetButton"
-                    class="btn btn-secondary me-2">
-                    {{ __('info.reset') }}
-                </button>
-                <button type="button" id="downloadButton" class="btn btn-info">
-                    {{ __('info.download_json') }}
-                </button>
-                <button type="button" id="downloadExcelButton" class="btn btn-success">
-                    {{ __('info.download_excel') }}
-                </button>
-            </div>
-        </form>
-
-        <div class="output-container mt-4">
-            <h3>{{ __('info.result') }}</h3>
-            <pre id="outputContainer"></pre>
-        </div>
-
-        <div class="catalog-table mt-4">
-            <h3>{{ __('info.api_catalog') }}</h3>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>{{ __('info.parameters') }}</th>
-                        <th>{{ __('info.type') }}</th>
-                        <th>{{ __('info.value') }}(s)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td >{{ __('info.faculty_id') }}</td>
-                        <td><span> array </span></td>
-                        <td>[Health Sciences, ...]</td>
-                    </tr>
-                    <tr>
-                        <td >{{ __('info.gender') }}</td>
-                        <td><span> array </span></td>
-                        <td>[male, female]</td>
-                    </tr>
-                    <tr>
-                        <td>{{ __('info.level') }}</td>
-                        <td><span> array </span></td>
-                        <td>[UG, GR , UD]</td>
-                    </tr>
-                    <tr>
-                        <td >{{ __('info.study_term_id') }}</td>
-                        <td><span> array </span></td>
-                        <td>["Second Semester 2018-2019", ...]</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
-</div>
-
 <footer>
     <div class="footer-section">
         <div class="container">
