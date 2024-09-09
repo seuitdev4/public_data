@@ -33,6 +33,6 @@ class CreateStudentReportPerDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_report_per_departments');
+        Schema::dropIfExists('student_department_reports');
     }
 }

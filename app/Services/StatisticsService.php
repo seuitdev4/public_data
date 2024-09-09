@@ -16,4 +16,9 @@ class StatisticsService extends BaseService implements StatisticsServiceInterfac
     {
         return $this->repository->getStudentStatisticsReport($filters);
     }
+
+    public function getGraduatedStatisticsReport(array $filters)
+    {
+        return $this->repository->getGraduatedStatisticsReport($filters);
+    }
 }

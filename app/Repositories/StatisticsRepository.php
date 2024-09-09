@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\GraduatedStudentReport;
 use App\Models\StudentReportPerDepartment;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Interfaces\StatisticsRepositoryInterface;
@@ -21,6 +22,25 @@ class StatisticsRepository extends BaseRepository implements StatisticsRepositor
             ->with('term')
             ->with('level')
             ->with('facultyDepartment')
+            ->with('year');
+
+        if (!empty($filters)) {
+            foreach ($filters as $key => $value) {
+                if (is_array($value)) {
+                    $query->whereIn($key, $value);
+                } else {
+                    $query->where($key, $value);
+                }
+            }
+        }
+
+        return $query->get();
+    }
+
+    public function getGraduatedStatisticsReport(array $filters)
+    {
+        $query =  GraduatedStudentReport::with('faculty')
+            ->with('faculty')
             ->with('year');
 
         if (!empty($filters)) {
