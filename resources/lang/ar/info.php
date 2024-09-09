@@ -14,7 +14,7 @@ return [
     'api_catalog' => 'فهرس واجهة برمجة التطبيقات',
     'parameters' => 'المعلمات',
     'type' => 'النوع',
-    'result'=>'نتيجة',
+    'result' => 'نتيجة',
     'value' => 'القيمة',
     'level' => 'المستوى',
     'faculty_id' => 'معرف الكلية',
@@ -24,6 +24,8 @@ return [
     'terms_of_service' => 'شروط الخدمة',
     'contact_us' => 'اتصل بنا',
     'title' => 'SEUAPI - احصائيات اعداد الطلبه',
-    'active_students'=> 'الطلاب المقيدين',
-    'graduate_students'=> 'الطلاب الخرجين'
+    'active_students' => 'الطلاب المقيدين',
+    'graduate_students' => 'الطلاب الخرجين',
+    'year' => 'السنه',
+
 ];

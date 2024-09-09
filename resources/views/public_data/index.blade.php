@@ -264,7 +264,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="true">{{ __('info.active_students') }}</button>
                 </li>
-                <li class="nav-item" role="presentation">`
+                <li class="nav-item" role="presentation">
                     <button class="nav-link" id="graduate-tab" data-bs-toggle="tab" data-bs-target="#graduate" type="button" role="tab" aria-controls="graduate" aria-selected="false">{{ __('info.graduate_students') }}</button>
                 </li>
             </ul>
@@ -405,6 +405,15 @@
                                         <option value="">{{ __('general.all') }}</option>
                                         <option value="1">{{ __('general.saudi') }}</option>
                                         <option value="0">{{ __('general.non-saudi') }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="yearInput" class="form-label">{{ __('info.year') }}:</label>
+                                    <select id="year" class="form-select" name="year_id[]" multiple>
+                                        <option value="">{{ __('general.all') }}</option>
+                                        @foreach($years as $year)
+                                            <option value="{{ $year->id }}">{{ $year->title }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -624,7 +633,7 @@
             event.preventDefault();
 
             console.log('Form submit intercepted');
-            var dynamicAction = '/api/statistics';
+            var dynamicAction = 'api/graduated/statistics';
             $(this).attr('action', dynamicAction);
             console.log('Form action set to:', $(this).attr('action'));
 
@@ -661,12 +670,10 @@
                             results: response.data.map(item => ({
                                 id: item.id,
                                 gender: item.gender || 'N/A',
-                                level: item.level || 'N/A',
                                 count: item.count || '0',
-                                faculty_department: item.faculty_department || 'N/A',
                                 faculty: item.faculty || 'N/A',
                                 year: item.year || 'N/A',
-                                term: item.term || 'N/A'
+                                is_saudi: item.is_saudi || 'N/A',
                             }))
                         };
                         $('#graduateOutputContainer').text(JSON.stringify(jsonData, null, 2));
