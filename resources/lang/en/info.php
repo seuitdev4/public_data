@@ -24,7 +24,8 @@ return [
     'terms_of_service'=>'Terms of Service',
     'contact_us'=>'Contact Us',
     'title' => 'SEUAPI - Students Statistics',
-     'general_tudents'=> 'General Students',
-     'graduate_students'=> 'Graduate Students'
+     'active_students'=> 'Active Students',
+     'graduate_students'=> 'Graduated Students',
+
 
 ];

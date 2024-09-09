@@ -24,6 +24,6 @@ return [
     'terms_of_service' => 'شروط الخدمة',
     'contact_us' => 'اتصل بنا',
     'title' => 'SEUAPI - احصائيات اعداد الطلبه',
-    'general_tudents'=> 'الطلاب العاديون',
-    'graduate_students'=> 'طلاب الدراسات العليا'
+    'active_students'=> 'الطلاب المقيدين',
+    'graduate_students'=> 'الطلاب الخرجين'
 ];

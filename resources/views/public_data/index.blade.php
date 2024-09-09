@@ -262,9 +262,9 @@
             </p>
             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="true">{{ __('info.general_tudents') }}</button>
+                    <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="true">{{ __('info.active_students') }}</button>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation">`
                     <button class="nav-link" id="graduate-tab" data-bs-toggle="tab" data-bs-target="#graduate" type="button" role="tab" aria-controls="graduate" aria-selected="false">{{ __('info.graduate_students') }}</button>
                 </li>
             </ul>
@@ -390,16 +390,6 @@
                                     </select>
                                 </div>
 
-
-                                <div class="col-md-6">
-                                    <label for="graduateDegreeInput" class="form-label">{{ __('general.degree_name') }}:</label>
-                                    <select id="graduateLevel" class="form-select" name="student_level[]" multiple>
-                                        <option value="">{{ __('general.all') }}</option>
-                                        @foreach($levels as $level)
-                                            <option value="{{ $level->id }}">{{ $level->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
                                 <div class="col-md-6">
                                     <label for="graduateGenderInput" class="form-label">{{ __('info.gender') }}:</label>
                                     <select id="graduateGender" class="form-select" name="gender[]" multiple>
@@ -410,16 +400,15 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="graduateSemesterInput" class="form-label">{{ __('info.semester') }}:</label>
-                                    <select id="graduateSemester" class="form-select" name="study_term_id[]" multiple>
+                                    <label for="graduateSemesterInput" class="form-label">{{ __('general.nationality') }}:</label>
+                                    <select id="graduateSemester" class="form-select" name="is_saudi[]" multiple>
                                         <option value="">{{ __('general.all') }}</option>
-                                        @foreach($semesters as $semester)
-                                            <option value="{{ $semester->id }}">{{ $semester->title }}</option>
-                                        @endforeach
+                                        <option value="1">{{ __('general.saudi') }}</option>
+                                        <option value="0">{{ __('general.non-saudi') }}</option>
                                     </select>
                                 </div>
                             </div>
-                
+
                             <div class="mt-4">
                                 <button
                                     type="submit"
@@ -441,12 +430,12 @@
                                 </button>
                             </div>
                         </form>
-                
+
                         <div class="output-container mt-4">
                             <h3>{{ __('info.result') }}</h3>
                             <pre id="graduateOutputContainer"></pre>
                         </div>
-                
+
                         <div class="catalog-table mt-4">
                             <h3>{{ __('info.api_catalog') }}</h3>
                             <table class="table table-bordered">
@@ -742,7 +731,7 @@
 
     });
 
-    
+
     $(document).ready(function () {
     console.log('JavaScript is loaded');
 
