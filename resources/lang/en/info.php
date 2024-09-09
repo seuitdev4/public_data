@@ -11,7 +11,7 @@ return [
     'reset' => 'Reset',
     'download_json' => 'Download JSON',
     'download_excel' => 'Download Excel',
-    'api_catalog' => 'API Catalog',
+    'api_catalog' => 'API Url:',
     'parameters' => 'Parameters',
     'type' => 'Type',
     'value' => 'Value',

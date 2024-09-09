@@ -151,6 +151,12 @@
             border-radius: 0.5rem;
             border: 1px solid #ccc;
         }
+        .endpoint {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
 
         @media (max-width: 576px) {
         .form-select {
@@ -340,7 +346,11 @@
                         </div>
 
                         <div class="catalog-table mt-4">
-                            <h3>{{ __('info.api_catalog') }}</h3>
+                        
+                            <div class="endpoint">
+                                {{ __('info.api_catalog') }}: <a href="https://academicreport.seu.edu.sa/api/statistics" target="_blank">https://academicreport.seu.edu.sa/api/statistics</a>
+                            </div>
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -446,7 +456,9 @@
                         </div>
 
                         <div class="catalog-table mt-4">
-                            <h3>{{ __('info.api_catalog') }}</h3>
+                            <div class="endpoint">
+                                {{ __('info.api_catalog') }}: <a href="https://academicreport.seu.edu.sa/api/graduated/statistics?" target="_blank">https://academicreport.seu.edu.sa/api/graduated/statistics?</a>
+                            </div>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -457,24 +469,24 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{{ __('info.faculty_id') }}</td>
-                                        <td><span> array </span></td>
-                                        <td>[Health Sciences, ...]</td>
+                                        <td>{{ __('general.faculties') }}</td>
+                                        <td><span>array</span></td>
+                                        <td>[Science & Theoretical Studies]</td>
                                     </tr>
                                     <tr>
                                         <td>{{ __('info.gender') }}</td>
-                                        <td><span> array </span></td>
-                                        <td>[male, female]</td>
+                                        <td><span>array</span></td>
+                                        <td>[male]</td>
                                     </tr>
                                     <tr>
-                                        <td>{{ __('info.level') }}</td>
-                                        <td><span> array </span></td>
-                                        <td>[UG, GR , UD]</td>
+                                        <td>{{ __('general.nationality') }}</td>
+                                        <td><span>array</span></td>
+                                        <td>Saudi</td>
                                     </tr>
                                     <tr>
-                                        <td>{{ __('info.study_term_id') }}</td>
-                                        <td><span> array </span></td>
-                                        <td>["Second Semester 2018-2019", ...]</td>
+                                        <td>{{ __('info.year') }}</td>
+                                        <td><span>array</span></td>
+                                        <td>[2018-2019]</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -627,8 +639,6 @@
             $('select').val(null).trigger('change');
         });
 
-
-
         $('#graduateFilterForm').on('submit', function (event) {
             event.preventDefault();
 
@@ -768,13 +778,8 @@
     $('select').each(function() {
         console.log('Options in ' + this.id + ':', $(this).find('option').length);
     });
-
-    // Rest of your JavaScript code...
 });
-
-
-
-
 </script>
+
 </body>
 </html>
