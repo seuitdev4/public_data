@@ -4,6 +4,26 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{ __('info.title') }}</title>
+    <link rel="icon" href="https://seu.edu.sa/images/new-logo.png" type="image/x-icon">
+
+    <meta name="description" content="Access and analyze student statistics from Saudi Electronic University. Filter by faculty, degree, gender, and more.">
+    <meta property="og:title" content="SEU Student Statistics Dashboard">
+    <meta property="og:description" content="Access and analyze student statistics from Saudi Electronic University.">
+    <meta property="og:image" content="https://seu.edu.sa/media/6634/logo-2.png">
+    <meta property="og:url" content="https://academicreport.seu.edu.sa">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SEU Student Statistics Dashboard">
+    <meta name="twitter:description" content="Access and analyze student statistics from Saudi Electronic University.">
+    <meta name="twitter:image" content="https://seu.edu.sa/media/6634/logo-2.png">
+
+    <link rel="canonical" href="https://academicreport.seu.edu.sa">
+    <meta name="author" content="Saudi Electronic University">
+    <meta name="keywords" content="Saudi Electronic University, student statistics, academic report, higher education">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+   
+
+  
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
