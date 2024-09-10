@@ -361,22 +361,22 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td >{{ __('info.faculty_id') }}</td>
+                                        <td >faculty_id</td>
                                         <td><span> array </span></td>
                                         <td>[Health Sciences, ...]</td>
                                     </tr>
                                     <tr>
-                                        <td >{{ __('info.gender') }}</td>
+                                        <td >gender</td>
                                         <td><span> array </span></td>
                                         <td>[male, female]</td>
                                     </tr>
                                     <tr>
-                                        <td>{{ __('info.level') }}</td>
+                                        <td>student_level</td>
                                         <td><span> array </span></td>
                                         <td>[UG, GR , UD]</td>
                                     </tr>
                                     <tr>
-                                        <td >{{ __('info.study_term_id') }}</td>
+                                        <td >study_term_id</td>
                                         <td><span> array </span></td>
                                         <td>["Second Semester 2018-2019", ...]</td>
                                     </tr>
@@ -469,22 +469,22 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{{ __('general.faculties') }}</td>
+                                        <td>faculty_id</td>
                                         <td><span>array</span></td>
                                         <td>[Science & Theoretical Studies]</td>
                                     </tr>
                                     <tr>
-                                        <td>{{ __('info.gender') }}</td>
+                                        <td>gender</td>
                                         <td><span>array</span></td>
                                         <td>[male]</td>
                                     </tr>
                                     <tr>
-                                        <td>{{ __('general.nationality') }}</td>
+                                        <td>is_saudi</td>
                                         <td><span>array</span></td>
                                         <td>Saudi</td>
                                     </tr>
                                     <tr>
-                                        <td>{{ __('info.year') }}</td>
+                                        <td>year_id</td>
                                         <td><span>array</span></td>
                                         <td>[2018-2019]</td>
                                     </tr>
