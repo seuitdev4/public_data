@@ -350,7 +350,7 @@
         }
 
         .tooltip-inner {
-            max-width: 600px;
+            max-width: 300px;
             /* Set the desired width */
             background-color: #343a40;
             /* Dark background for tooltip */
@@ -505,7 +505,7 @@
                             </div>
                         </form>
 
-                        <div class="json-output output-container mt-4">
+                        <div class="json-output output-container m <br>-4">
                             <h3>{{ __('info.result') }}</h3>
                             <pre id="outputContainer"></pre>
                         </div>
@@ -521,7 +521,7 @@
                                         BaseUrl:: <a>GET https://academicreport.seu.edu.sa/api/statistics</a>
                                         <button class="btn btn-primary" onclick="showData_student()"> GET All</button>
                                     </div>
-                                    <h5 id="get-all-graduates">2. Retrieve Graduated Student by Faculties</h5>
+                                    <h5 id="get-all-graduates">2. Retrieve Active Students by Faculties</h5>
                                     <div class="endpoint">
                                         Endpoint:: <a>GET /graduated/statistics?faculty_id[]=1&faculty_id[]=2</a>
                                         <button class="btn btn-primary" onclick="showData_student('faculty', 1)">GET
@@ -530,39 +530,57 @@
 
                                         <span class="hint-icon" data-toggle="tooltip"
                                             title="
-                                                value='1', 'title' => 'Health Sciences',
-                                                value='2', 'title' => 'Science &amp; Theoretical Studies',
-                                                value='3', 'title' => 'Administrative &amp;Financial Sc.',
-                                                value='4', 'title' => 'Common First Year',
-                                                value='5', 'title' => 'Computing and Informatics'">
+                                                1 => 'Health Sciences' <br>
+                                                2 => 'Science &amp; Theoretical Studies' <br>
+                                                3 => 'Administrative &amp;Financial Sc.' <br>
+                                                4 => 'Common First Year' <br>
+                                                5 => 'Computing and Informatics'">
                                             ℹ️
                                         </span>
 
                                     </div>
-                                    <h5 id="get-all-graduates">3. Retrieve Graduates by Year</h5>
+                                    <h5 id="get-all-graduates">3. Retrieve Active Students by Semester</h5>
                                     <div class="endpoint">
                                         Endpoint:: <a>GET /graduated/statistics?year_id[]=1&year_id[]=4</a>
                                         <button class="btn btn-primary" onclick="showData_student('year', 1)">GET
-                                            By Year(s)
+                                            By Semester(s)
                                         </button>
 
                                         <span class="hint-icon" data-toggle="tooltip"
-                                            title="
-                                            value='': All 
-                                            value='1': First Semester 2018-2019 
-                                            value='2': Second Semester 2018-2019 
-                                            value='3': First Semester 2019-2020 
-                                            value='4': Second Semester 2019-2020 
-                                            value='5': First Semester 2020-2021 
-                                            value='6': Second Semester 2020-2021 
-                                            value='7': First Semester 2021-2022 
-                                            value='8': Second Semester 2021-2022 
-                                            value='9': Semester 2022-2023 
-                                            value='10': Semester 2023-2024">
+                                              title="
+                                              1 => 'First Semester 2018-2019'<br>
+                                              2 => 'Second Semester 2018-2019'<br>
+                                              3 => 'First Semester 2019-2020'<br>
+                                              4 => 'Second Semester 2019-2020'<br>
+                                              5 => 'First Semester 2020-2021'<br>
+                                              6 => 'Second Semester 2020-2021'<br>
+                                              7 => 'First Semester 2021-2022'<br>
+                                              8 => 'Second Semester 2021-2022'<br>
+                                              9 => 'Semester 2022-2023'<br>
+                                              10 => 'Semester 2023-2024'">
                                             ℹ️
                                         </span>
+
                                     </div>
-                                    <h5 id="get-all-graduates">4. Retrieve Graduates by Gender</h5>
+
+                                    <h5 id="get-all-graduates">4. Retrieve Active Students by Academic Qualification:</h5>
+                                    <div class="endpoint">
+                                        Endpoint:: <a>GET /graduated/statistics?student_level[]=1</a>
+                                        <button class="btn btn-primary" onclick="showData_student('student_level', 1)">GET
+                                            By Academic Qualification(s)
+                                        </button>
+
+                                        <span class="hint-icon" data-toggle="tooltip"
+                                              title="
+                                              1 => 'Bachelors'<br>
+                                              2 => 'Masters'<br>
+                                              3 => 'Diploma'<br>
+                                             ">
+                                            ℹ️
+                                        </span>
+
+                                    </div>
+                                    <h5 id="get-all-graduates">5. Retrieve Active Students by Gender</h5>
                                     <div class="endpoint">
                                         Endpoint:: <a>GET /api/graduated/statistics?gender[]=male&?gender[]=female</a>
                                         <button class="btn btn-primary"
@@ -671,11 +689,11 @@
 
                                         <span class="hint-icon" data-toggle="tooltip"
                                             title="
-                                                value='1', 'title' => 'Health Sciences',
-                                                value='2', 'title' => 'Science &amp; Theoretical Studies',
-                                                value='3', 'title' => 'Administrative &amp;Financial Sc.',
-                                                value='4', 'title' => 'Common First Year',
-                                                value='5', 'title' => 'Computing and Informatics'">
+                                                1 => 'Health Sciences' <br>
+                                                2 => 'Science &amp; Theoretical Studies' <br>
+                                                3 => 'Administrative &amp;Financial Sc.' <br>
+                                                4 => 'Common First Year' <br>
+                                                5 => 'Computing and Informatics'">
                                             ℹ️
                                         </span>
 
@@ -689,17 +707,12 @@
 
                                         <span class="hint-icon" data-toggle="tooltip"
                                             title="
-                                            value='': All 
-                                            value='1': First Semester 2018-2019 
-                                            value='2': Second Semester 2018-2019 
-                                            value='3': First Semester 2019-2020 
-                                            value='4': Second Semester 2019-2020 
-                                            value='5': First Semester 2020-2021 
-                                            value='6': Second Semester 2020-2021 
-                                            value='7': First Semester 2021-2022 
-                                            value='8': Second Semester 2021-2022 
-                                            value='9': Semester 2022-2023 
-                                            value='10': Semester 2023-2024">
+                                           1 => '2018-2019' <br>
+                                           2 => '2019-2020' <br>
+                                           3 => '2020-2021' <br>
+                                           4 => '2021-2022' <br>
+                                           5 => '2022-2023' <br>
+                                           6 => '2023-2024'">
                                             ℹ️
                                         </span>
                                     </div>
