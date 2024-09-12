@@ -45,6 +45,9 @@
         rel="stylesheet"
     />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
     <style>
         body {
             background-color: #f0f2f5;
@@ -219,6 +222,29 @@
             border-top: none;
             border-radius: 0 0 0.25rem 0.25rem;
         }
+
+
+        .output-container {
+        background: rgb(51, 51, 51);
+        border-radius: 6px;
+        padding: 16px;
+        margin-top: 1rem;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    .output-container h3 {
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+    .output-container pre {
+        background: rgb(51, 51, 51);
+        color: #d4d4d4;
+        border: none;
+        padding: 0;
+        margin: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
 
 
     </style>
@@ -798,6 +824,9 @@
     $('select').each(function() {
         console.log('Options in ' + this.id + ':', $(this).find('option').length);
     });
+
+    $('#outputContainer').text(JSON.stringify(jsonData, null, 2));
+    hljs.highlightElement(document.getElementById('outputContainer'));
 });
 </script>
 
