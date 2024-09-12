@@ -281,23 +281,28 @@
         .null {
             color: #ff5555;
         }
+
         .sidebar {
-            background: #007bff;
+            background: linear-gradient(to left, #5b3283, #3580ab, #5db5b3);
             color: white;
             padding: 15px;
             border-radius: 5px 0 0 5px;
         }
+
         .sidebar h3 {
             margin-bottom: 20px;
         }
+
         .sidebar a {
             color: white;
             text-decoration: none;
         }
+
         .sidebar a:hover {
             text-decoration: underline;
             color: #e0e0e0;
         }
+
         .content {
             padding: 20px;
             background: white;
@@ -305,9 +310,11 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             flex: 1;
         }
+
         button {
             margin-top: 10px;
         }
+
         .output {
             margin-top: 20px;
             padding: 15px;
@@ -316,10 +323,6 @@
             border-radius: 5px;
             display: none;
         }
-       
-
-        
-
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HDGZC38HCB"></script>
@@ -569,43 +572,42 @@
                             <pre id="graduateOutputContainer"></pre>
                         </div>
 
-
-                        
                         <div class="col-lg-12 d-flex">
                             <nav class="col-md-3 col-lg-2 sidebar">
                                 <h4>API Endpoints</h4>
                                 <ul class="nav flex-column">
-                                    <li class="nav-item"><a class="nav-link" href="#get-all-graduates">Get All Graduates</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#get-by-semester">Get by Faculties</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#get-by-degree">Get by Degree</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#get-by-gender">Get by Gender</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#get-all-graduates">Get All
+                                            Graduates</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#get-by-semester">Get by
+                                            Faculties</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#get-by-degree">Get by Year</a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link" href="#get-by-gender">Get by Gender</a>
+                                    </li>
                                 </ul>
                             </nav>
-                        
+
                             <main class="content">
                                 <h3 id="get-all-graduates">1. Retrieve All Graduates</h3>
                                 <p><b>Endpoint:</b> GET /api/graduates/</p>
                                 <button class="btn btn-primary" onclick="showData()">GET /graduates</button>
-                        
+
                                 <h3 id="get-by-semester">2. Retrieve Graduates by Faculties</h3>
                                 <p><b>Endpoint:</b> GET /api/graduated/statistics?faculty_id[]=1</p>
-                                <button class="btn btn-primary" onclick="showData('faculty', 1)">GET /graduates/faculty_id/1</button>
-                        
+                                <button class="btn btn-primary" onclick="showData('faculty', 1)">GET
+                                    /graduates/faculty_id/1</button>
+
                                 <h3 id="get-by-degree">3. Retrieve Graduates by Year</h3>
                                 <p><b>Endpoint:</b> GET /api/graduated/statistics?year_id[]=1</p>
-                                <button class="btn btn-primary" onclick="showData('year', 1)">GET /graduates/year_id/1</button>
-                        
+                                <button class="btn btn-primary" onclick="showData('year', 1)">GET
+                                    /graduates/year_id/1</button>
+
                                 <h3 id="get-by-gender">4. Retrieve Graduates by Gender</h3>
                                 <p><b>Endpoint:</b> GET /api/graduated/statistics?gender[]=male</p>
-                                <button class="btn btn-primary" onclick="showData('gender', 'male')">GET /graduates/gender/male</button>
-                        
-                             
-                                
+                                <button class="btn btn-primary" onclick="showData('gender', 'male')">GET
+                                    /graduates/gender/male</button>
                             </main>
                         </div>
-
-
-                       
                     </div>
                 </div>
             </div>
@@ -917,54 +919,55 @@
     </script>
 
 
-<script>
-    function highlightJson(json) {
-        return JSON.stringify(json, null, 2)
-            .replace(/"([^"]+)":/g, '"<span class="highlight">$1</span>":') // Highlight keys
-            .replace(/: "([^"]+)"/g, ': "<span class="highlight">$1</span>"'); // Highlight string values
-    }
-
-    function showData(type, value) {
-        const outputContainer = document.getElementById('graduateOutputContainer');
-        outputContainer.textContent = "Loading..."; // Optional: show loading
-
-        let url = 'https://academicreport.seu.edu.sa/api/graduated/statistics?';
-        if (type === 'faculty') {
-            url += `faculty_id[]=${value}`;
-        } else if (type === 'year') {
-            url += `year_id[]=${value}`;
-        } else if (type === 'gender') {
-            url += `gender[]=${value}`;
+    <script>
+        function highlightJson(json) {
+            return JSON.stringify(json, null, 2)
+                .replace(/"([^"]+)":/g, '"<span class="highlight">$1</span>":') // Highlight keys
+                .replace(/: "([^"]+)"/g, ': "<span class="highlight">$1</span>"'); // Highlight string values
         }
 
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(response => {
-                const jsonData = {
-                    total_count: response.meta.total_student_count,
-                    results: response.data.map(item => ({
-                        id: item.id || Math.random().toString(36).substr(2, 9), // Generate a random ID if not present
-                        gender: item.gender || 'N/A',
-                        count: item.count || '0',
-                        faculty: item.faculty || 'N/A',
-                        year: item.year || 'N/A',
-                        is_saudi: item.is_saudi || 'N/A',
-                    }))
-                };
-                
-                const highlightedJson = highlightJson(jsonData);
-                outputContainer.innerHTML = highlightedJson; // Use innerHTML to render highlighted JSON
-            })
-            .catch(error => {
-                outputContainer.textContent = 'Error: ' + error.message;
-            });
-    }
-</script>
+        function showData(type, value) {
+            const outputContainer = document.getElementById('graduateOutputContainer');
+            outputContainer.textContent = "Loading..."; // Optional: show loading
+
+            let url = 'https://academicreport.seu.edu.sa/api/graduated/statistics?';
+            if (type === 'faculty') {
+                url += `faculty_id[]=${value}`;
+            } else if (type === 'year') {
+                url += `year_id[]=${value}`;
+            } else if (type === 'gender') {
+                url += `gender[]=${value}`;
+            }
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(response => {
+                    const jsonData = {
+                        total_count: response.meta.total_student_count,
+                        results: response.data.map(item => ({
+                            id: item.id || Math.random().toString(36).substr(2,
+                            9), // Generate a random ID if not present
+                            gender: item.gender || 'N/A',
+                            count: item.count || '0',
+                            faculty: item.faculty || 'N/A',
+                            year: item.year || 'N/A',
+                            is_saudi: item.is_saudi || 'N/A',
+                        }))
+                    };
+
+                    const highlightedJson = highlightJson(jsonData);
+                    outputContainer.innerHTML = highlightedJson; // Use innerHTML to render highlighted JSON
+                })
+                .catch(error => {
+                    outputContainer.textContent = 'Error: ' + error.message;
+                });
+        }
+    </script>
 
 
 </body>
