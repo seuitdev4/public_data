@@ -27,5 +27,6 @@ return [
     'active_students' => 'الطلاب المقيدين',
     'graduate_students' => 'الطلاب الخرجين',
     'year' => 'السنه',
+    'example' => 'مثال',
 
 ];

@@ -27,6 +27,7 @@ return [
     'active_students' => 'Active Students',
     'graduate_students' => 'Graduated Students',
     'year' => 'Year',
+    'example' => 'Example',
 
 
 ];
