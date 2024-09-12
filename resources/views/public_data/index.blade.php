@@ -350,32 +350,25 @@
         }
 
         .tooltip-inner {
+            max-width: 600px;
+            /* Set the desired width */
             background-color: #343a40;
             /* Dark background for tooltip */
             color: #ffffff;
             /* White text for contrast */
             border-radius: 4px;
             /* Rounded corners */
-            padding: 10px;
+            padding: 15px;
             /* Padding for better spacing */
             font-size: 0.9rem;
-            /* Slightly smaller font size */
-            max-width: 250px;
-            /* Set a max width for the tooltip */
+            /* Font size */
+            white-space: normal;
+            /* Allow line breaks */
         }
 
-        .tooltip-inner ul {
-            margin: 0;
-            /* Remove default margins */
-            padding: 0;
-            /* Remove default padding */
-            list-style-type: none;
-            /* Remove bullet points */
-        }
-
-        .tooltip-inner li {
-            margin-bottom: 5px;
-            /* Spacing between list items */
+        .tooltip-arrow {
+            border-top-color: #343a40;
+            /* Match tooltip arrow color */
         }
     </style>
     <!-- Google tag (gtag.js) -->
@@ -1043,7 +1036,9 @@
 
     <script>
         $(function() {
-            $('[data-toggle="tooltip"]').tooltip(); // Initialize tooltips
+            $('[data-toggle="tooltip"]').tooltip({
+                html: true
+            }); // Enable HTML in tooltips
         });
 
         function highlightJson(json) {
