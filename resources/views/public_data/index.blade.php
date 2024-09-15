@@ -516,14 +516,15 @@
                         <div class="col-lg-12 d-flex">
                             <div class="col-lg-8">
                                 <main class="content">
-                                    <h5 id="get-all-graduates">1. Retrieve All Students</h5>
+                                    <h5 id="get-all-graduates">Base Url :<a>https://academicreport.seu.edu.sa/api</a></h5>
+                                   <hr>
                                     <div class="endpoint">
-                                        BaseUrl:: <a>GET https://academicreport.seu.edu.sa/api/statistics</a>
+                                        Endpoint:: <a>GET /statistics</a>
                                         <button class="btn btn-primary" onclick="showData_student()"> GET All</button>
                                     </div>
                                     <h5 id="get-all-graduates">2. Retrieve Active Students by Faculties</h5>
                                     <div class="endpoint">
-                                        Endpoint:: <a>GET /graduated/statistics?faculty_id[]=1&faculty_id[]=2</a>
+                                        Endpoint:: <a>GET /statistics?faculty_id[]=1&faculty_id[]=2</a>
                                         <button class="btn btn-primary" onclick="showData_student('faculty', 1)">GET
                                             By Faculties
                                         </button>
@@ -541,7 +542,7 @@
                                     </div>
                                     <h5 id="get-all-graduates">3. Retrieve Active Students by Semester</h5>
                                     <div class="endpoint">
-                                        Endpoint:: <a>GET /graduated/statistics?year_id[]=1&year_id[]=4</a>
+                                        Endpoint:: <a>GET /statistics?year_id[]=1&year_id[]=4</a>
                                         <button class="btn btn-primary" onclick="showData_student('year', 1)">GET
                                             By Semester(s)
                                         </button>
@@ -565,7 +566,7 @@
 
                                     <h5 id="get-all-graduates">4. Retrieve Active Students by Academic Qualification:</h5>
                                     <div class="endpoint">
-                                        Endpoint:: <a>GET /graduated/statistics?student_level[]=1</a>
+                                        Endpoint:: <a>GET /statistics?student_level[]=1</a>
                                         <button class="btn btn-primary" onclick="showData_student('student_level', 1)">GET
                                             By Academic Qualification(s)
                                         </button>
@@ -582,7 +583,7 @@
                                     </div>
                                     <h5 id="get-all-graduates">5. Retrieve Active Students by Gender</h5>
                                     <div class="endpoint">
-                                        Endpoint:: <a>GET /api/graduated/statistics?gender[]=male&?gender[]=female</a>
+                                        Endpoint:: <a>GET /statistics?gender[]=male&?gender[]=female</a>
                                         <button class="btn btn-primary"
                                             onclick="showData_student('gender', 'male')">GET
                                             By Gender(s)
@@ -675,9 +676,11 @@
                         <div class="col-lg-12 d-flex">
                             <div class="col-lg-8">
                                 <main class="content">
+                                    <h5 id="">Base Url :<a>https://academicreport.seu.edu.sa/api</a></h5>
+                                    <hr>
                                     <h5 id="get-all-graduates">1. Retrieve All Graduates</h5>
                                     <div class="endpoint">
-                                        BaseUrl:: <a>GET https://academicreport.seu.edu.sa/api</a>
+                                        BaseUrl:: <a>GET /graduated/statistics</a>
                                         <button class="btn btn-primary" onclick="showData()"> GET All</button>
                                     </div>
                                     <h5 id="get-all-graduates">2. Retrieve Graduated Student by Faculties</h5>
@@ -718,7 +721,7 @@
                                     </div>
                                     <h5 id="get-all-graduates">4. Retrieve Graduates by Gender</h5>
                                     <div class="endpoint">
-                                        Endpoint:: <a>GET /api/graduated/statistics?gender[]=male&?gender[]=female</a>
+                                        Endpoint:: <a>GET /graduated/statistics?gender[]=male&?gender[]=female</a>
                                         <button class="btn btn-primary" onclick="showData('gender', 'male')">GET
                                             By Gender(s)
                                         </button>
